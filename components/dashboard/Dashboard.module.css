@@ -1,0 +1,7 @@
+.div {
+  left: 300px;
+  box-sizing: border-box;
+  max-width: 100%;
+  text-align: center;
+  align-self: center;
+}

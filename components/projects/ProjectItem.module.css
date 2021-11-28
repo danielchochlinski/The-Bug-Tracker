@@ -1,0 +1,14 @@
+/* .item {
+    border-top: 1px solid black;
+    position: absolute;
+    left: 320px;
+    width: calc(100% - 350px);
+    display: line;
+    
+} */
+.tr {
+  cursor: pointer;
+  text-align: center;
+  border-bottom: 1px solid black;
+  font-size: 1.15rem;
+}

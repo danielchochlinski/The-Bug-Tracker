@@ -21,11 +21,13 @@ export async function getStaticProps() {
     props: {
       tickets: tickets.map((tickets) => ({
         title: tickets.title || null,
+        projectId: tickets.projectId || null,
+        personel: tickets.personel || null,
         description: tickets.description || null,
         status: tickets.status || null,
         importance: tickets.importance || null,
+        type: tickets.type || null,
         date: tickets.date || null,
-        targetDate: tickets.targetDate || null,
         id: tickets._id.toString() || null,
       })),
     },

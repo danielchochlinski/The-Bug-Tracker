@@ -4,7 +4,9 @@
     width: 950px;
     left: 350px;
 }
-
+.tr {
+    justify-content:  space-evenly;
+}
 
 
 

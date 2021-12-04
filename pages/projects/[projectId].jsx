@@ -1,4 +1,4 @@
-import { MongoClient, ObjectId } from "mongodb";
+import { MongoClient } from "mongodb";
 import { useRouter } from "next/router";
 import ProjectDetails from "../../components/projects/ProjectDetails";
 
@@ -33,7 +33,7 @@ export async function getStaticPaths() {
   return {
     fallback: false,
     paths: projects.map((project) => ({
-      params: { projectId: project._id.toString() },
+      params: { projectId: project.title.toString() },
     })),
   };
 }
@@ -48,7 +48,7 @@ export async function getStaticProps(context) {
   const projectsCollection = db.collection("projects");
 
   const selectedProject = await projectsCollection.findOne({
-    _id: ObjectId(projectId),
+    title: (projectId),
   });
 
   return {

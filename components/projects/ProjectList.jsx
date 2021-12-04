@@ -17,7 +17,7 @@ function ProjectList(props) {
   };
 
   async function addProjectHandler(enteredProjectData) {
-    const response = await fetch("/api/projects", {
+    const response = await fetch("/api/postPojects", {
       method: "POST",
       body: JSON.stringify(enteredProjectData),
       headers: {
@@ -26,7 +26,6 @@ function ProjectList(props) {
       },
     });
     const data = await response.json();
-    console.log(data);
     setShowAddProject(false);
   }
 

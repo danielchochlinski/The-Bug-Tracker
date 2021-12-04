@@ -16,9 +16,8 @@ function TicketList(props) {
     setshowAddTicket(false);
   };
 
-
   async function addTicketHandler(enteredTicketData) {
-    const response = await fetch("/api/tickets", {
+    const response = await fetch("/api/postTickets", {
       method: "POST",
       body: JSON.stringify(enteredTicketData),
       headers: {
@@ -37,12 +36,13 @@ function TicketList(props) {
           <h1> Ticket List</h1>
           <table className={classes.table}>
             <thead>
-              <tr>
+              <tr className={classes.tr}>
                 <td>Title</td>
                 <td>Project Name</td>
-                <td>Personoel</td>
-                <td>Ticket Priority</td>
+                <td>Personel</td>
+                <td>Description</td>
                 <td>Status</td>
+                <td>Ticket Priority</td>
                 <td>Type</td>
                 <td>Date</td>
               </tr>
@@ -52,11 +52,13 @@ function TicketList(props) {
                 <TicketItem
                   id={ticket.id}
                   title={ticket.title}
+                  projectId={ticket.projectId}
+                  personel={ticket.personel}
                   description={ticket.description}
                   status={ticket.status}
                   importance={ticket.importance}
+                  type={ticket.type}
                   date={ticket.date}
-                  dueDate={ticket.dueDate}
                   key={ticket.id}
                 />
               ))}

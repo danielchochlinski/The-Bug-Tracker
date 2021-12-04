@@ -1,50 +1,157 @@
-import { useRef, useState, useEffect } from "react";
-
+import { useState, useEffect } from "react";
+import useInput from "../../hooks/useInput";
 import Modal from "../ui/Modal";
+import classes from "./AddTicketForm.module.css";
+
+const isNotEmpty = (value) => value.trim() !== "";
 
 function AddTicketForm(props) {
-  const titleInputRef = useRef();
-  const [projectId, setProjectId] = useState([]);
-  const descriptionInputRef = useRef();
-  const personelInputRef = useRef();
-  const [statusValue, setStatusValue] = useState("");
-  const [importanceValue, setImportanceValue] = useState("");
-  const dateInputRef = useRef();
+  const [projects, setProjects] = useState([]);
 
-  const [typeValue, setTypeValue] = useState("");
+  const {
+    value: enteredTitle,
+    isValid: titleIsValid,
+    hasError: titleInputHasError,
+    valueChangeHandler: titleChangeHandler,
+    inputBlurHandler: titleBlurHandler,
+    reset: resetTitleInput,
+  } = useInput(isNotEmpty);
 
-  const projectIdHandler = (e) => {
-    setProjectId(e.target.value);
-  };
-  const statusValueHandler = (e) => {
-    setStatusValue(e.target.value);
-  };
+  //projectId
 
-  const importanceValueHandler = (e) => {
-    setImportanceValue(e.target.value);
-  };
+  const {
+    value: enteredProjectId,
+    isValid: projectIdIsValid,
+    hasError: projectIdInputHasError,
+    valueChangeHandler: projectIdChangeHandler,
+    inputBlurHandler: projectIdBlurHandler,
+    reset: resetProjectIdInput,
+  } = useInput(isNotEmpty);
 
-  const typeValueHandler = (e) => {
-    setTypeValue(e.target.value);
-  };
+  const {
+    value: enteredDescription,
+    isValid: descriptionIsValid,
+    hasError: descriptionInputHasError,
+    valueChangeHandler: descriptionChangeHandler,
+    inputBlurHandler: descriptionBlurHandler,
+    reset: resetDescriptionInput,
+  } = useInput(isNotEmpty);
+
+  const {
+    value: enteredPersonel,
+    isValid: personelIsValid,
+    hasError: personelInputHasError,
+    valueChangeHandler: personelChangeHandler,
+    inputBlurHandler: personelBlurHandler,
+    reset: resetPersonelInput,
+  } = useInput(isNotEmpty);
+
+  const {
+    value: enteredStatus,
+    isValid: statusIsValid,
+    hasError: statusInputHasError,
+    valueChangeHandler: statusChangeHandler,
+    inputBlurHandler: statusBlurHandler,
+    reset: resetStatusInput,
+  } = useInput(isNotEmpty);
+
+  const {
+    value: enteredImportance,
+    isValid: importanceIsValid,
+    hasError: importanceInputHasError,
+    valueChangeHandler: importanceChangeHandler,
+    inputBlurHandler: importanceBlurHandler,
+    reset: resetImportanceInput,
+  } = useInput(isNotEmpty);
+
+  const {
+    value: enteredType,
+    isValid: typeIsValid,
+    hasError: typeInputHasError,
+    valueChangeHandler: typeChangeHandler,
+    inputBlurHandler: typeBlurHandler,
+    reset: resetTypeInput,
+  } = useInput(isNotEmpty);
+
+  const {
+    value: enteredDate,
+    isValid: dateIsValid,
+    hasError: dateInputHasError,
+    valueChangeHandler: dateChangeHandler,
+    inputBlurHandler: dateBlurHandler,
+    reset: resetDateInput,
+  } = useInput(isNotEmpty);
+
+  let formIsValid = false;
+
+  if (
+    titleIsValid &&
+    descriptionIsValid &&
+    statusIsValid &&
+    importanceIsValid &&
+    personelIsValid &&
+    typeIsValid &&
+    dateIsValid
+  ) {
+    formIsValid;
+  }
+
+  // const [projectId, setProjectId] = useState([]);
+
+  // const projectIdHandler = (e) => {
+  //   setProjectId(e.target.value);
+  // };
+
+  const titleClasses = titleInputHasError
+    ? classes.formControlInvalid
+    : classes.formControl;
+  const projectIdClasses = projectIdInputHasError
+    ? classes.formControlInvalid
+    : classes.formControl;
+  const descriptionClasses = descriptionInputHasError
+    ? classes.formControlInvalid
+    : classes.formControl;
+  const personelClasses = personelInputHasError
+    ? classes.formControlInvalid
+    : classes.formControl;
+  const statusClasses = statusInputHasError
+    ? classes.formControlInvalid
+    : classes.formControl;
+  const importanceClasses = importanceInputHasError
+    ? classes.formControlInvalid
+    : classes.formControl;
+  const typeClasses = typeInputHasError
+    ? classes.formControlInvalid
+    : classes.formControl;
+  const dateClasses = dateInputHasError
+    ? classes.formControlInvalid
+    : classes.formControl;
 
   const addTicketHandler = (e) => {
     e.preventDefault();
-    const enteredTitle = titleInputRef.current.value;
-    const enteredDescription = descriptionInputRef.current.value;
-    const enteredDate = dateInputRef.current.value;
-    const enteredPersonel = personelInputRef.current.value;
 
+    if (!formIsValid) {
+      return;
+    }
     const ticketData = {
       title: enteredTitle,
+      projectId: enteredProjectId,
       description: enteredDescription,
       personel: enteredPersonel,
-      status: statusValue,
-      importance: importanceValue,
-      type: typeValue,
+      status: enteredStatus,
+      importance: enteredImportance,
+      type: enteredType,
       date: enteredDate,
     };
     props.onAddTicket(ticketData);
+
+    resetTitleInput();
+    resetDescriptionInput();
+    resetPersonelInput();
+    resetStatusInput();
+    resetImportanceInput();
+    resetTypeInput();
+    resetDateInput();
   };
 
   useEffect(() => {
@@ -56,75 +163,119 @@ function AddTicketForm(props) {
         },
       });
       const projects = await response.json();
-      setProjectId(projects);
-     
+      setProjects(projects);
+
+      console.log(projects);
     }
     getProjectsArray();
   }, []);
-        console.log(projectId);
-
 
   return (
     <Modal>
       <form onSubmit={addTicketHandler}>
         <h1>Add Ticket For Project</h1>
-        <div>
+        <div className={titleClasses}>
           <label htmlFor="title">Ticket Title</label>
-          <input type="text" id="title" ref={titleInputRef} />
+          <input
+            type="text"
+            id="title"
+            value={enteredTitle}
+            onChange={titleChangeHandler}
+            onBlur={titleBlurHandler}
+          />
+          {titleInputHasError && <p>Title canot be empty!</p>}
         </div>
-        <div>
+        <div className={projectIdClasses}>
           <label htmlFor="projectId">Project ID</label>
-          <select value={projectId} onChange={projectIdHandler}>
-            {projectId.map((project) => (
-              <option value={project.title} key={project.id}>{project.title}</option>
+          <select
+            onChange={projectIdChangeHandler}
+            onBlur={projectIdBlurHandler}
+          >
+            <option value="">Select Below</option>
+            {projects.map((project) => (
+              <option
+                value={project._id.toString()}
+                key={project.id}
+              >
+                {project.title}
+              </option>
             ))}
           </select>
         </div>
-        <div>
+        <div className={descriptionClasses}>
           <label htmlFor="description">Description</label>
-          <input type="text" id="description" ref={descriptionInputRef} />
+          <input
+            type="text"
+            id="description"
+            value={enteredDescription}
+            onChange={descriptionChangeHandler}
+            onBlur={descriptionBlurHandler}
+          />
+          {descriptionInputHasError && <p>Description canot be empty!</p>}
         </div>
-        <div>
+        <div className={personelClasses}>
           <label htmlFor="personelAssigned">Assign Personel</label>
-          <input type="text" id="personelAssigned" ref={personelInputRef} />
+          <input
+            type="text"
+            id="personelAssigned"
+            value={enteredPersonel}
+            onChange={personelChangeHandler}
+            onBlur={personelBlurHandler}
+          />
+          {personelInputHasError && <p>Enter Personel</p>}
         </div>
-        <div>
+        <div className={statusClasses}>
           <label htmlFor="status">Status</label>
-          <select value={statusValue} onChange={statusValueHandler}>
+          <select
+            value={enteredStatus}
+            onChange={statusChangeHandler}
+            onBlur={statusBlurHandler}
+          >
             <option value="Not Started">Not Started</option>
             <option value="In Progress">In Progress</option>
             <option value="Done">Done</option>
             <option value="Late">Late</option>
           </select>
+          {statusInputHasError && <p>Choose a status!</p>}
         </div>
-        <div>
+        <div className={importanceClasses}>
           <label htmlFor="importance">Priority</label>
           <select
-            value={importanceValue}
-            onChange={importanceValueHandler}
-            placeholder="Importance"
+            value={enteredImportance}
+            onChange={importanceChangeHandler}
+            onBlur={importanceBlurHandler}
           >
             <option value="Low">Low</option>
             <option value="Medium">Medium</option>
             <option value="High">High</option>
             <option value="Urgent">Urgent</option>
           </select>
+          {importanceInputHasError && <p>Choose urgency!</p>}
         </div>
-        <div>
+        <div className={typeClasses}>
           <label htmlFor="type">Type</label>
           <select
-            value={typeValue}
-            onChange={typeValueHandler}
+            value={enteredType}
+            onChange={typeChangeHandler}
+            onBlur={typeBlurHandler}
             placeholder="Type"
           >
             <option value="Create">Create</option>
             <option value="Edit">Edit</option>
             <option value="Fix">Fix</option>
           </select>
+          {typeInputHasError && <p>Select type of Ticket!</p>}
         </div>
-        <div>
+        <div className={dateClasses}>
           <label htmlFor="date">Date</label>
-          <input type="date" id="date" placeholder="Date" ref={dateInputRef} />
+          <input
+            type="date"
+            id="date"
+            value={enteredDate}
+            onChange={dateChangeHandler}
+            onBlur={dateBlurHandler}
+          />
+          {dateInputHasError && <p>Pick a valid date!</p>}
         </div>
 
         <div>

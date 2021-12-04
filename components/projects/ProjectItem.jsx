@@ -6,7 +6,7 @@ function ProjectItem(props) {
   const router = useRouter();
 
   const openProjectHandler = () => {
-    router.push("/projects/"  + props.id);
+    router.push("/projects/"  + props.title);
   };
 
   return (

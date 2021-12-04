@@ -8,12 +8,13 @@
 .table {
   text-align: center;
   justify-content: space-around;
-  width: 100%;
   border-collapse: collapse;
+  box-sizing: border-box;
+  margin-bottom:10px;
+  width: 100%;
 }
 
 .table__tr {
   border-bottom: 2px solid black;
   border-width: 2px;
-
 }

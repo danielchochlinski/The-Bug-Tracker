@@ -1,11 +1,11 @@
-import { MongoClient, ObjectId } from "mongodb";
+import { MongoClient } from "mongodb";
 import { useRouter } from "next/router";
 import TicketDetails from "../../components/tickets/TicketDetials";
 function TicketDetailPage(props) {
-  // const router = useRouter();
+  const router = useRouter();
 
-  // router.query.projectId;
-  //send request to backend API to fetch item with this id
+  router.query.projectId;
+  // send request to backend API to fetch item with this id
   return (
     <TicketDetails
       title={props.ticketData.title}
@@ -34,7 +34,7 @@ export async function getStaticPaths() {
   return {
     fallback: false,
     paths: tickets.map((ticket) => ({
-      params: { ticketId: ticket._id.toString() },
+      params: { ticketId: ticket.title.toString() },
     })),
   };
 }
@@ -49,7 +49,7 @@ export async function getStaticProps(context) {
   const ticketsCollection = db.collection("tickets");
 
   const selectedTicket = await ticketsCollection.findOne({
-    _id: ObjectId(ticketId),
+    title: (ticketId),
   });
 
   return {

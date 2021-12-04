@@ -1,10 +1,28 @@
+import { useEffect, useState } from "react";
 import classes from "./ProjectDetails.module.css";
 import Card from "../ui/Card";
+
 function ProjectDetails(props) {
 
-  async function getTickets(){
-    
+  const [tickets, setTickets] = useState([])
+  useEffect(() => {
+    async function getTickets() {
+      const response = await fetch("/api/fetchTickets", {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      });
+      const tickets = await response.json();
+setTickets(tickets);
+    }
+    getTickets();
+  }, []);
+
+  if(props.title == tickets.title){
+    console.log("yes")
   }
+
   return (
     <div className={classes.container}>
       <Card>
@@ -18,7 +36,7 @@ function ProjectDetails(props) {
             <h1>Ticket list for this project</h1>
           </div>
           <div className={classes.assignedPersonel}>
-              <h1>Assigned Personel</h1>
+            <h1>Assigned Personel</h1>
           </div>
         </div>
       </Card>

@@ -1,0 +1,7 @@
+.formControl {
+    color: black
+}
+.formControlInvalid {
+  border: 1px solid #b40e0e;
+  background-color: #fddddd;
+}

@@ -1,10 +1,13 @@
 import { useState, Fragment, useEffect } from "react";
 
-import TicketItem from "./TicketItem";
 import classes from "./TicketList.module.css";
-
+import Box from "../ui/Box"
 import Card from "../ui/Card";
+import TicketItem from "./TicketItem";
+
 import AddTicketForm from "./AddTicketForm";
+
+
 
 function TicketList(props) {
   const [showAddTicket, setshowAddTicket] = useState(false);
@@ -17,7 +20,7 @@ function TicketList(props) {
   };
 
   async function addTicketHandler(enteredTicketData) {
-    const response = await fetch("/api/postTickets", {
+    const response = await fetch("/api/postTicket", {
       method: "POST",
       body: JSON.stringify(enteredTicketData),
       headers: {
@@ -31,7 +34,7 @@ function TicketList(props) {
 
   return (
     <Fragment>
-      <div className={classes.project__list}>
+      <Box>
         <Card>
           <h1> Ticket List</h1>
           <table className={classes.table}>
@@ -40,7 +43,6 @@ function TicketList(props) {
                 <td>Title</td>
                 <td>Project Name</td>
                 <td>Personel</td>
-                <td>Description</td>
                 <td>Status</td>
                 <td>Ticket Priority</td>
                 <td>Type</td>
@@ -66,7 +68,7 @@ function TicketList(props) {
           </table>
           <button onClick={showAddTicketHandler}>add</button>
         </Card>
-      </div>
+      </Box>
       {showAddTicket && (
         <AddTicketForm
           onAddTicket={addTicketHandler}

@@ -17,8 +17,6 @@ function AddTicketForm(props) {
     reset: resetTitleInput,
   } = useInput(isNotEmpty);
 
-  //projectId
-
   const {
     value: enteredProjectId,
     isValid: projectIdIsValid,
@@ -86,6 +84,7 @@ function AddTicketForm(props) {
 
   if (
     titleIsValid &&
+    projectIdIsValid &&
     descriptionIsValid &&
     statusIsValid &&
     importanceIsValid &&
@@ -93,14 +92,8 @@ function AddTicketForm(props) {
     typeIsValid &&
     dateIsValid
   ) {
-    formIsValid;
+    formIsValid = true;
   }
-
-  // const [projectId, setProjectId] = useState([]);
-
-  // const projectIdHandler = (e) => {
-  //   setProjectId(e.target.value);
-  // };
 
   const titleClasses = titleInputHasError
     ? classes.formControlInvalid
@@ -146,6 +139,7 @@ function AddTicketForm(props) {
     props.onAddTicket(ticketData);
 
     resetTitleInput();
+    resetProjectIdInput();
     resetDescriptionInput();
     resetPersonelInput();
     resetStatusInput();
@@ -173,114 +167,134 @@ function AddTicketForm(props) {
   return (
     <Modal>
       <form onSubmit={addTicketHandler}>
-        <h1>Add Ticket For Project</h1>
-        <div className={titleClasses}>
-          <label htmlFor="title">Ticket Title</label>
-          <input
-            type="text"
-            id="title"
-            value={enteredTitle}
-            onChange={titleChangeHandler}
-            onBlur={titleBlurHandler}
-          />
-          {titleInputHasError && <p>Title canot be empty!</p>}
-        </div>
-        <div className={projectIdClasses}>
-          <label htmlFor="projectId">Project ID</label>
-          <select
-            onChange={projectIdChangeHandler}
-            onBlur={projectIdBlurHandler}
-          >
-            <option value="">Select Below</option>
-            {projects.map((project) => (
-              <option
-                value={project._id.toString()}
-                key={project.id}
-              >
-                {project.title}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className={descriptionClasses}>
-          <label htmlFor="description">Description</label>
-          <input
-            type="text"
-            id="description"
-            value={enteredDescription}
-            onChange={descriptionChangeHandler}
-            onBlur={descriptionBlurHandler}
-          />
-          {descriptionInputHasError && <p>Description canot be empty!</p>}
-        </div>
-        <div className={personelClasses}>
-          <label htmlFor="personelAssigned">Assign Personel</label>
-          <input
-            type="text"
-            id="personelAssigned"
-            value={enteredPersonel}
-            onChange={personelChangeHandler}
-            onBlur={personelBlurHandler}
-          />
-          {personelInputHasError && <p>Enter Personel</p>}
-        </div>
-        <div className={statusClasses}>
-          <label htmlFor="status">Status</label>
-          <select
-            value={enteredStatus}
-            onChange={statusChangeHandler}
-            onBlur={statusBlurHandler}
-          >
-            <option value="Not Started">Not Started</option>
-            <option value="In Progress">In Progress</option>
-            <option value="Done">Done</option>
-            <option value="Late">Late</option>
-          </select>
-          {statusInputHasError && <p>Choose a status!</p>}
-        </div>
-        <div className={importanceClasses}>
-          <label htmlFor="importance">Priority</label>
-          <select
-            value={enteredImportance}
-            onChange={importanceChangeHandler}
-            onBlur={importanceBlurHandler}
-          >
-            <option value="Low">Low</option>
-            <option value="Medium">Medium</option>
-            <option value="High">High</option>
-            <option value="Urgent">Urgent</option>
-          </select>
-          {importanceInputHasError && <p>Choose urgency!</p>}
-        </div>
-        <div className={typeClasses}>
-          <label htmlFor="type">Type</label>
-          <select
-            value={enteredType}
-            onChange={typeChangeHandler}
-            onBlur={typeBlurHandler}
-            placeholder="Type"
-          >
-            <option value="Create">Create</option>
-            <option value="Edit">Edit</option>
-            <option value="Fix">Fix</option>
-          </select>
-          {typeInputHasError && <p>Select type of Ticket!</p>}
-        </div>
-        <div className={dateClasses}>
-          <label htmlFor="date">Date</label>
-          <input
-            type="date"
-            id="date"
-            value={enteredDate}
-            onChange={dateChangeHandler}
-            onBlur={dateBlurHandler}
-          />
-          {dateInputHasError && <p>Pick a valid date!</p>}
-        </div>
-
-        <div>
-          <button onClick={props.onClose}>Close</button>
-          <button type="submit">Add Project</button>
+        <div className={classes.form}>
+          <h1>Add Ticket For Project</h1>
+          <div className={titleClasses}>
+            <label htmlFor="title">Ticket Title</label>
+            <input
+              type="text"
+              id="title"
+              value={enteredTitle}
+              onChange={titleChangeHandler}
+              onBlur={titleBlurHandler}
+            />
+            {titleInputHasError && (
+              <p className={classes.textError}>Title canot be empty!</p>
+            )}
+          </div>
+          <div className={descriptionClasses}>
+            <label htmlFor="description">Description</label>
+            <input
+              type="text"
+              id="description"
+              value={enteredDescription}
+              onChange={descriptionChangeHandler}
+              onBlur={descriptionBlurHandler}
+            />
+            {descriptionInputHasError && (
+              <p className={classes.textError}>Description canot be empty!</p>
+            )}
+          </div>
+          <div className={personelClasses}>
+            <label htmlFor="personelAssigned">Assign Personel</label>
+            <input
+              type="text"
+              id="personelAssigned"
+              value={enteredPersonel}
+              onChange={personelChangeHandler}
+              onBlur={personelBlurHandler}
+            />
+            {personelInputHasError && (
+              <p className={classes.textError}>Enter Personel</p>
+            )}
+          </div>
+          <div className={projectIdClasses}>
+            <label htmlFor="projectId">Project ID</label>
+            <select
+              onChange={projectIdChangeHandler}
+              onBlur={projectIdBlurHandler}
+            >
+              <option value="">Select Below</option>
+              {projects.map((project) => (
+                <option value={project._id.toString()} key={project.id}>
+                  {project.title}
+                </option>
+              ))}
+            </select>
+            {projectIdInputHasError && (
+              <p className={classes.textError}>Chose project!</p>
+            )}
+          </div>
+          <div className={statusClasses}>
+            <label htmlFor="status">Status</label>
+            <select
+              value={enteredStatus}
+              onChange={statusChangeHandler}
+              onBlur={statusBlurHandler}
+            >
+              <option value="">Chose Status</option>
+              <option value="Not Started">Not Started</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Done">Done</option>
+              <option value="Late">Late</option>
+            </select>
+            {statusInputHasError && (
+              <p className={classes.textError}>Choose a status!</p>
+            )}
+          </div>
+          <div className={importanceClasses}>
+            <label htmlFor="importance">Priority</label>
+            <select
+              value={enteredImportance}
+              onChange={importanceChangeHandler}
+              onBlur={importanceBlurHandler}
+            >
+              <option value="">Chose Importance</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+              <option value="Urgent">Urgent</option>
+            </select>
+            {importanceInputHasError && (
+              <p className={classes.textError}>Choose urgency!</p>
+            )}
+          </div>
+          <div className={typeClasses}>
+            <label htmlFor="type">Type</label>
+            <select
+              value={enteredType}
+              onChange={typeChangeHandler}
+              onBlur={typeBlurHandler}
+              placeholder="Type"
+            >
+              <option value="">Chose Type</option>
+              <option value="Create">Create</option>
+              <option value="Edit">Edit</option>
+              <option value="Fix">Fix</option>
+            </select>
+            {typeInputHasError && (
+              <p className={classes.textError}>Select type of Ticket!</p>
+            )}
+          </div>
+          <div className={dateClasses}>
+            <label htmlFor="date">Date</label>
+            <input
+              type="date"
+              id="date"
+              value={enteredDate}
+              onChange={dateChangeHandler}
+              onBlur={dateBlurHandler}
+            />
+            {dateInputHasError && (
+              <p className={classes.textError}>Pick a valid date!</p>
+            )}
+          </div>
+          <div>
+            <button onClick={props.onClose}>Close</button>
+            <button type="submit" disabled={!formIsValid}>
+              Add Project
+            </button>
+          </div>
         </div>
       </form>
     </Modal>

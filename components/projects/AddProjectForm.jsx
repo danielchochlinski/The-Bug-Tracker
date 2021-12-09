@@ -121,83 +121,103 @@ function AddProjectForm(props) {
   return (
     <Modal>
       <form onSubmit={addProjectHandler}>
-        <div className={titleClasses}>
-          <label htmlFor="title">Project Name</label>
-          <input
-            type="text"
-            id="title"
-            value={enteredTitle}
-            onChange={titleChangeHandler}
-            onBlur={titleBlurHandler}
-          />
-          {titleInputHasError && <p>Title cannot be empty!</p>}
-        </div>
-        <div className={descriptionClasses}>
-          <label htmlFor="description">Description</label>
-          <input
-            type="text"
-            id="description"
-            value={enteredDescription}
-            onChange={descriptionChangeHandler}
-            onBlur={descriptionBlurHandler}
-          />
-          {descriptionInputHasError && <p>Description cannot be empty!</p>}
-        </div>
-        <div className={statusClasses}>
-          <label htmlFor="status">Status</label>
-          <select
-            value={enteredStatus}
-            onChange={statusChangeHandler}
-            onBlur={statusBlurHandler}
-          >
-            <option value="Not Started">Not Started</option>
-            <option value="In Progress">In Progress</option>
-            <option value="Done">Done</option>
-            <option value="Late">Late</option>
-          </select>
-          {statusInputHasError && <p>Choose status for this project!</p>}
-        </div>
-        <div className={importanceClasses}>
-          <label htmlFor="importance">Importance</label>
-          <select
-            value={enteredImportance}
-            onChange={importanceChangeHandler}
-            onBlur={importanceBlurHandler}
-          >
-            <option value="Low">Low</option>
-            <option value="Medium">Medium</option>
-            <option value="High">High</option>
-            <option value="Urgent">Urgent</option>
-          </select>
-          {importanceInputHasError && <p>Choose urgency for this project!</p>}
-        </div>
-        <div className={dateClasses}>
-          <label htmlFor="date">Date</label>
-          <input
-            type="date"
-            id="date"
-            value={enteredDate}
-            onChange={dateChangeHandler}
-            onBlur={dateBlurHandler}
-          />
-          {dateInputHasError && <p>Enter Date</p>}
-        </div>
-        <div className={targetDateClasses}>
-          <label htmlFor="targetDate">Target Date</label>
-          <input
-            type="date"
-            id="targetDate"
-            value={enteredTargetDate}
-            onChange={targetDateChangeHandler}
-            onBlur={targetDateBlurHandler}
-          />
-          {targetDateInputHasError && <p>Enter Date</p>}
-        </div>
-        <div>
-          <button onClick={props.onClose}>Close</button>
-          <button type="submit" disabled={!formIsValid}>
-            Add Project
-          </button>
+        <div className={classes.form}>
+          <div className={titleClasses}>
+            <label htmlFor="title">Project Name</label>
+            <input
+              type="text"
+              id="title"
+              value={enteredTitle}
+              onChange={titleChangeHandler}
+              onBlur={titleBlurHandler}
+            />
+            {titleInputHasError && (
+              <p className={classes.textError}>Title cannot be empty!</p>
+            )}
+          </div>
+          <div className={descriptionClasses}>
+            <label htmlFor="description">Description</label>
+            <input
+              type="text"
+              id="description"
+              value={enteredDescription}
+              onChange={descriptionChangeHandler}
+              onBlur={descriptionBlurHandler}
+            />
+            {descriptionInputHasError && (
+              <p className={classes.textError}>Description cannot be empty!</p>
+            )}
+          </div>
+          <div className={statusClasses}>
+            <label htmlFor="status">Status</label>
+            <select
+              value={enteredStatus}
+              onChange={statusChangeHandler}
+              onBlur={statusBlurHandler}
+            >
+              <option value="">Choose Status</option>
+              <option value="Not Started">Not Started</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Done">Done</option>
+              <option value="Late">Late</option>
+            </select>
+            {statusInputHasError && (
+              <p className={classes.textError}>
+                Choose status for this project!
+              </p>
+            )}
+          </div>
+          <div className={importanceClasses}>
+            <label htmlFor="importance">Importance</label>
+            <select
+              value={enteredImportance}
+              onChange={importanceChangeHandler}
+              onBlur={importanceBlurHandler}
+            >
+              <option value="">Choose Urgency</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+              <option value="Urgent">Urgent</option>
+            </select>
+            {importanceInputHasError && (
+              <p className={classes.textError}>
+                Choose urgency for this project!
+              </p>
+            )}
+          </div>
+          <div className={dateClasses}>
+            <label htmlFor="date">Date</label>
+            <input
+              type="date"
+              id="date"
+              value={enteredDate}
+              onChange={dateChangeHandler}
+              onBlur={dateBlurHandler}
+            />
+            {dateInputHasError && (
+              <p className={classes.textError}>Enter Date</p>
+            )}
+          </div>
+          <div className={targetDateClasses}>
+            <label htmlFor="targetDate">Target Date</label>
+            <input
+              type="date"
+              id="targetDate"
+              value={enteredTargetDate}
+              onChange={targetDateChangeHandler}
+              onBlur={targetDateBlurHandler}
+            />
+            {targetDateInputHasError && (
+              <p className={classes.textError}>Enter Target Date!</p>
+            )}
+          </div>
+          <div>
+            <button onClick={props.onClose}>Close</button>
+            <button type="submit" disabled={!formIsValid}>
+              Add Project
+            </button>
+          </div>
         </div>
       </form>
     </Modal>

@@ -13,7 +13,6 @@ function TicketItem(props) {
       <td>{props.title}</td>
       <td>{props.projectId}</td>
       <td>{props.personel}</td>
-      <td>{props.description}</td>
       <td>{props.status}</td>
       <td>{props.importance}</td>
       <td>{props.type}</td>

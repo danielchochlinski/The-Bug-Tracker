@@ -4,6 +4,7 @@ import ProjectItem from "./ProjectItem";
 import classes from "./ProjectList.module.css";
 
 import Card from "../ui/Card";
+import Box from "../ui/Box"
 import AddProjectForm from "./AddProjectForm";
 
 function ProjectList(props) {
@@ -17,7 +18,7 @@ function ProjectList(props) {
   };
 
   async function addProjectHandler(enteredProjectData) {
-    const response = await fetch("/api/postPojects", {
+    const response = await fetch("/api/postProject", {
       method: "POST",
       body: JSON.stringify(enteredProjectData),
       headers: {
@@ -31,7 +32,7 @@ function ProjectList(props) {
 
   return (
     <Fragment>
-      <div className={classes.project__list}>
+      <Box>
         <Card>
           <h1>Project List</h1>
           <table className={classes.table}>
@@ -61,7 +62,7 @@ function ProjectList(props) {
           </table>
           <button onClick={showAddProjectHandler}>add</button>
         </Card>
-      </div>
+      </Box>
       {showAddProject && (
         <AddProjectForm
           onAddProject={addProjectHandler}

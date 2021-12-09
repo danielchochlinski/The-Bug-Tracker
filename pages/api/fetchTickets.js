@@ -8,7 +8,7 @@ async function handler(req, res) {
 
   const ticketsCollection = db.collection("tickets");
 
-  const tickets = await ticketsCollection.find({}, { title: 1 }).toArray();
+  const tickets = await ticketsCollection.find().toArray();
   res.json(tickets);
   console.log(tickets);
 

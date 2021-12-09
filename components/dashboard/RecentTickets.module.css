@@ -1,0 +1,21 @@
+.recentTickets {
+  padding: 20px;
+  padding-top: 0;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 2fr 1fr;   
+  
+}
+
+.recentTickets thead tr {
+  font-weight: 600;
+  
+}
+
+.recentTickets tr:hover {
+  background-color: #cccc;
+}
+
+.recentTickets tbody tr td {
+
+}

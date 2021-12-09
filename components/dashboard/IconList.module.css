@@ -1,0 +1,14 @@
+.iconBox {
+  position: relative;
+  margin: 20px;
+  width: 950px;
+  left: 350px;
+}
+
+.iconList {
+
+  display: grid;
+        grid-template-columns: repeat(4, 1fr);
+  padding: 3px;    
+  grid-gap: 20px;
+}

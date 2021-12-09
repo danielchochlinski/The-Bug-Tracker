@@ -1,0 +1,7 @@
+.gridBox {
+    display: grid;
+    grid-gap: 30px;
+    grid-template-columns: 1.5fr 1fr;
+    height: 200px;
+}
+

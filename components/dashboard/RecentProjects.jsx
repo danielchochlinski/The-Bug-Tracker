@@ -10,12 +10,12 @@ function RecentProjects() {
       const response = await fetch("/api/fetchProjects");
       const projects = await response.json();
       setProjects(projects);
-      console.log(projects);
     }
     getProjects();
   }, []);
   return (
     <div className={classes.recentProjects}>
+      <div className={classes.heading}>Recent Projects</div>
       <table>
         <thead>
           <tr>
@@ -27,11 +27,11 @@ function RecentProjects() {
         <tbody>
           {projects.map((project) => (
             <ProjectItemDashboard
-              key={project.id}
+              key={project._id}
               title={project.title}
               description={project.description}
               status={project.status}
-              impotance={project.importance}
+              importance={project.importance}
               date={project.date}
               targetDate={project.targetDate}
             />

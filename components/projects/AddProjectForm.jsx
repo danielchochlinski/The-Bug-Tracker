@@ -1,8 +1,7 @@
-import { useRef, useState } from "react";
-import classes from "./AddProjectForm.module.css";
 import useInput from "../../hooks/useInput";
-
 import Modal from "../ui/Modal";
+
+import classes from "./AddProjectForm.module.css";
 
 const isNotEmpty = (value) => value.trim() !== "";
 
@@ -108,6 +107,7 @@ function AddProjectForm(props) {
       date: enteredDate,
       targetDate: enteredTargetDate,
     };
+    
     props.onAddProject(projectData);
 
     resetTitleInput();

@@ -1,20 +1,31 @@
-.project__list {
-  position: absolute;
-  margin: 20px;
-  width: 950px;
-  left: 350px;
-}
-
-.table {
+.projectList {
+  display: grid;
   text-align: center;
-  justify-content: space-around;
+  align-items: center;
+  font-size: 0.9rem;
+}
+.heading {
+  padding: 5px;
+}
+.projectList table {
   border-collapse: collapse;
-  box-sizing: border-box;
-  margin-bottom:10px;
-  width: 100%;
 }
 
-.table__tr {
-  border-bottom: 2px solid black;
-  border-width: 2px;
+.projectList thead {
+  padding: 0.75rem 2rem;
+  letter-spacing: 0.1rem;
+  font-weight: 450;
+  text-transform: uppercase;
+  background-color: rgb(173, 84, 84);
 }
+.projectList tbody tr {
+  cursor: pointer;
+}
+.projectList tbody td {
+  padding: 0.9rem;
+  border-bottom: 1px solid rgb(12, 12, 12, 0.3);
+}
+
+/* .projectList tbody tr:nth-child(odd) {
+
+} */

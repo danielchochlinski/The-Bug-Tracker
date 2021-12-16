@@ -11,7 +11,6 @@ function ProjectItemDashboard(props) {
   return (
     <tr onClick={openProjectHandler}>
       <td>{props.title}</td>
-      <td>{props.status}</td>
       <td>{props.importance}</td>
       <td>{props.targetDate}</td>
     </tr>

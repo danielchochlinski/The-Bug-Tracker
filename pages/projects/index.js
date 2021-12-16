@@ -1,8 +1,14 @@
-import ProjectList from "../../components/projects/ProjectList";
+import { Fragment } from "react";
 import { MongoClient } from "mongodb";
 
+import ProjectList from "../../components/projects/ProjectList";
+
 function AllProjectsPage(props) {
-  return <ProjectList projects={props.projects} />;
+  return (
+    <Fragment>
+      <ProjectList projects={props.projects} />
+    </Fragment>
+  );
 }
 
 export async function getStaticProps() {
@@ -29,7 +35,7 @@ export async function getStaticProps() {
         id: project._id.toString(),
       })),
     },
-    revalidate: false
+    revalidate: false,
   };
 }
 

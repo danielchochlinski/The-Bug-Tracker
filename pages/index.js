@@ -2,14 +2,15 @@ import { Fragment } from "react";
 
 import IconList from "../components/dashboard/IconList";
 import RecentAddList from "../components/dashboard/RecentAddList";
-import ChartsList from "../components/dashboard/ChartsList"
+import Calendar from "../components/workNprogres/MyCalendar"
+
 
 function Main() {
   return (
     <Fragment>
       <IconList />
     <RecentAddList />
-    <ChartsList />
+    <Calendar />
     </Fragment>
   );
 }

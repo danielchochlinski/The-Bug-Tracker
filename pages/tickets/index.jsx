@@ -1,8 +1,15 @@
+import {Fragment} from "react"
 import TicketList from "../../components/tickets/TicketList";
 import { MongoClient } from "mongodb";
+import ChartsList from "../../components/tickets/ChartsList"
 
 function AllTicketsPage(props) {
-  return <TicketList tickets={props.tickets} />;
+  return (
+    <Fragment>
+      <TicketList tickets={props.tickets} />
+      <ChartsList />
+    </Fragment>
+  );
 }
 
 export async function getStaticProps() {

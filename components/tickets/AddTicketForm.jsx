@@ -80,6 +80,15 @@ function AddTicketForm(props) {
     reset: resetDateInput,
   } = useInput(isNotEmpty);
 
+  const {
+    value: enteredTargetDate,
+    isValid: targetDateIsValid,
+    hasError: targetDateInputHasError,
+    valueChangeHandler: targetDateChangeHandler,
+    inputBlurHandler: targetDateBlurHandler,
+    reset: resetTargetDateInput,
+  } = useInput(isNotEmpty);
+
   let formIsValid = false;
 
   if (
@@ -90,7 +99,8 @@ function AddTicketForm(props) {
     importanceIsValid &&
     personelIsValid &&
     typeIsValid &&
-    dateIsValid
+    dateIsValid &&
+    targetDateIsValid
   ) {
     formIsValid = true;
   }
@@ -119,6 +129,9 @@ function AddTicketForm(props) {
   const dateClasses = dateInputHasError
     ? classes.formControlInvalid
     : classes.formControl;
+  const targetDateClasses = targetDateInputHasError
+    ? classes.formControlInvalid
+    : classes.formControl;
 
   const addTicketHandler = (e) => {
     e.preventDefault();
@@ -135,6 +148,7 @@ function AddTicketForm(props) {
       importance: enteredImportance,
       type: enteredType,
       date: enteredDate,
+      targetDate: enteredTargetDate,
     };
     props.onAddTicket(ticketData);
 
@@ -146,6 +160,7 @@ function AddTicketForm(props) {
     resetImportanceInput();
     resetTypeInput();
     resetDateInput();
+    resetTargetDateInput()
   };
 
   useEffect(() => {
@@ -216,7 +231,7 @@ function AddTicketForm(props) {
             >
               <option value="">Select Below</option>
               {projects.map((project) => (
-                <option value={project._id.toString()} key={project.id}>
+                <option value={project.title} key={project.id}>
                   {project.title}
                 </option>
               ))}
@@ -286,6 +301,19 @@ function AddTicketForm(props) {
               onBlur={dateBlurHandler}
             />
             {dateInputHasError && (
+              <p className={classes.textError}>Pick a valid date!</p>
+            )}
+          </div>
+          <div className={targetDateClasses}>
+            <label htmlFor="targetDate">Target Date</label>
+            <input
+              type="date"
+              id="targetDate"
+              value={enteredTargetDate}
+              onChange={targetDateChangeHandler}
+              onBlur={targetDateBlurHandler}
+            />
+            {targetDateInputHasError && (
               <p className={classes.textError}>Pick a valid date!</p>
             )}
           </div>

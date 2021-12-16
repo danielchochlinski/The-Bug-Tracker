@@ -4,7 +4,7 @@ import ProjectItem from "./ProjectItem";
 import classes from "./ProjectList.module.css";
 
 import Card from "../ui/Card";
-import Box from "../ui/Box"
+import Box from "../ui/Box";
 import AddProjectForm from "./AddProjectForm";
 
 function ProjectList(props) {
@@ -34,33 +34,35 @@ function ProjectList(props) {
     <Fragment>
       <Box>
         <Card>
-          <h1>Project List</h1>
-          <table className={classes.table}>
-            <thead>
-              <tr className={classes.table__tr}>
-                <td>Title</td>
-                <td>Status</td>
-                <td>Importance</td>
-                <td>Date</td>
-                <td>Target Date</td>
-              </tr>
-            </thead>
-            <tbody>
-              {props.projects.map((project) => (
-                <ProjectItem
-                  title={project.title}
-                  description={project.description}
-                  status={project.status}
-                  importance={project.importance}
-                  date={project.date}
-                  targetDate={project.targetDate}
-                  key={project.id}
-                  id={project.id}
-                />
-              ))}
-            </tbody>
-          </table>
-          <button onClick={showAddProjectHandler}>add</button>
+          <div className={classes.projectList}>
+            <h1>Project List</h1>
+            <table>
+              <thead>
+                <tr>
+                  <td>Title</td>
+                  <td>Status</td>
+                  <td>Importance</td>
+                  <td>Date</td>
+                  <td>Target Date</td>
+                </tr>
+              </thead>
+              <tbody>
+                {props.projects.map((project) => (
+                  <ProjectItem
+                    title={project.title}
+                    description={project.description}
+                    status={project.status}
+                    importance={project.importance}
+                    date={project.date}
+                    targetDate={project.targetDate}
+                    key={project.id}
+                    id={project.id}
+                  />
+                ))}
+              </tbody>
+            </table>
+            <button onClick={showAddProjectHandler}>Add Project</button>
+          </div>
         </Card>
       </Box>
       {showAddProject && (

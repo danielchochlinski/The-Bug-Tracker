@@ -17,6 +17,7 @@ function TicketItem(props) {
       <td>{props.importance}</td>
       <td>{props.type}</td>
       <td>{props.date}</td> 
+      <td>{props.targetDate}</td>
     </tr>
   );
 }

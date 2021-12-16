@@ -34,47 +34,53 @@ function TicketList(props) {
 
   return (
     <Fragment>
-      <Box>
-        <Card>
-          <h1> Ticket List</h1>
-          <table className={classes.table}>
-            <thead>
-              <tr className={classes.tr}>
-                <td>Title</td>
-                <td>Project Name</td>
-                <td>Personel</td>
-                <td>Status</td>
-                <td>Ticket Priority</td>
-                <td>Type</td>
-                <td>Date</td>
-              </tr>
-            </thead>
-            <tbody>
-              {props.tickets.map((ticket) => (
-                <TicketItem
-                  id={ticket.id}
-                  title={ticket.title}
-                  projectId={ticket.projectId}
-                  personel={ticket.personel}
-                  description={ticket.description}
-                  status={ticket.status}
-                  importance={ticket.importance}
-                  type={ticket.type}
-                  date={ticket.date}
-                  key={ticket.id}
-                />
-              ))}
-            </tbody>
-          </table>
-          <button onClick={showAddTicketHandler}>add</button>
-        </Card>
-      </Box>
-      {showAddTicket && (
-        <AddTicketForm
-          onAddTicket={addTicketHandler}
-          onClose={hideAddTicketHandler}
-        />
-      )}
+        <Box>
+
+          <Card>
+            <div className={classes.ticketsList}>
+              <div className={classes.header}>Tickets List</div>
+              <table>
+                <thead>
+                  <tr>
+                    <td>Title</td>
+                    <td>Project Name</td>
+                    <td>Personel</td>
+                    <td>Status</td>
+                    <td>Ticket Priority</td>
+                    <td>Type</td>
+                    <td>Date</td>
+                    <td>Due Date</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  {props.tickets.map((ticket) => (
+                    <TicketItem
+                      id={ticket.id}
+                      title={ticket.title}
+                      projectId={ticket.projectId}
+                      personel={ticket.personel}
+                      description={ticket.description}
+                      status={ticket.status}
+                      importance={ticket.importance}
+                      type={ticket.type}
+                      date={ticket.date}
+                      targetDate={ticket.targetDate}
+                      key={ticket.id}
+                    />
+                  ))}
+                </tbody>
+              </table>
+              <button onClick={showAddTicketHandler}>add</button>
+            </div>
+          </Card>
+          
+        </Box>
+        {showAddTicket && (
+          <AddTicketForm
+            onAddTicket={addTicketHandler}
+            onClose={hideAddTicketHandler}
+          />
+        )}
     </Fragment>
   );
 }

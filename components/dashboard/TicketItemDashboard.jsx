@@ -10,12 +10,9 @@ function TicketItemDashboard(props) {
   return (
     <tr onClick={openTicketHandler}>
       <td>{props.title}</td>
-      <td>{props.projectId}</td>
-      <td>{props.personel}</td>
-      <td>{props.status}</td>
       <td>{props.importance}</td>
-      <td>{props.type}</td>
-      <td>{props.date}</td>
+      <td>{props.status}</td>
+      <td>{props.targetDate}</td>
     </tr>
   );
 }

@@ -1,6 +1,6 @@
 import { MongoClient } from "mongodb";
 import { useRouter } from "next/router";
-import TicketDetails from "../../components/tickets/TicketDetials";
+import TicketDetails from "../../components/tickets/TicketDetails/TicketDetails"
 function TicketDetailPage(props) {
   const router = useRouter();
 
@@ -9,12 +9,15 @@ function TicketDetailPage(props) {
   return (
     <TicketDetails
       title={props.ticketData.title}
+      projectId={props.ticketData.projectId}
       description={props.ticketData.description}
       personel={props.ticketData.personel}
       status={props.ticketData.status}
       importance={props.ticketData.importance}
       type={props.ticketData.type}
-      data={props.ticketData.data}
+      date={props.ticketData.date}
+      targetDate={props.ticketData.targetDate}
+      key={props.ticketData._id}
     />
   );
 }
@@ -57,10 +60,14 @@ export async function getStaticProps(context) {
       ticketData: {
         id: selectedTicket._id.toString(),
         title: selectedTicket.title,
+        projectId: selectedTicket.projectId,
         description: selectedTicket.description,
+        personel: selectedTicket.personel,
         status: selectedTicket.status,
         importance: selectedTicket.importance,
+        type: selectedTicket.type,
         date: selectedTicket.date,
+        targetDate: selectedTicket.targetDate,
       },
     },
   };

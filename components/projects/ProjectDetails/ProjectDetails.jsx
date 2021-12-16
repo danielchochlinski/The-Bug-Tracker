@@ -1,10 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, Fragment } from "react";
+
 import classes from "./ProjectDetails.module.css";
-import Card from "../ui/Card";
-import TicketForProjectDetail from "./ProjectDetails/TicketForProjectDetail";
+
+import Card from "../../ui/Card";
+import Box from "../../ui/Box"
+import TicketForProjectDetail from "./TicketForProjectDetail";
+import ProjectDescription from "./ProjectDescription";
+
+
 
 function ProjectDetails(props) {
   const [tickets, setTickets] = useState([]);
+
   useEffect(() => {
     async function getTickets() {
       const response = await fetch("/api/fetchTickets", {
@@ -24,13 +31,19 @@ function ProjectDetails(props) {
   );
 
   return (
-    <div className={classes.container}>
-      <Card>
-        <div className={classes.header}>
-          <h2>Details for project</h2>
-          <h3>{props.title}</h3>
-          <div>{props.description}</div>
-        </div>
+    <Fragment>
+      <Box>
+        <ProjectDescription
+          title={props.title}
+          description={props.description}
+          status={props.status}
+          importance={props.importance}
+          date={props.date}
+          targetDate={props.targetDate}
+        />
+      </Box>
+      <Box>
+        <Card>
         <div className={classes.grid}>
           <div className={classes.ticketList}>
             <h1>Ticket list for this project</h1>
@@ -72,8 +85,9 @@ function ProjectDetails(props) {
             </table>
           </div>
         </div>
-      </Card>
-    </div>
+        </Card>
+      </Box>
+    </Fragment>
   );
 }
 

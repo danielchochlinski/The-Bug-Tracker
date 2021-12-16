@@ -1,6 +1,5 @@
 import { MongoClient } from "mongodb";
-import { useRouter } from "next/router";
-import ProjectDetails from "../../components/projects/ProjectDetails";
+import ProjectDetails from "../../components/projects/ProjectDetails/ProjectDetails";
 
 function ProjectDetailPage(props) {
   // const router = useRouter();
@@ -9,11 +8,12 @@ function ProjectDetailPage(props) {
   //send request to backend API to fetch item with this id
   return (
     <ProjectDetails
+      key={props.projectData._id}
       title={props.projectData.title}
       description={props.projectData.description}
       status={props.projectData.status}
       importance={props.projectData.importance}
-      data={props.projectData.data}
+      date={props.projectData.date}
       targetDate={props.projectData.targetDate}
     />
   );

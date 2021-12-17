@@ -1,18 +1,18 @@
-import Card from "../../ui/Card"
-import classes from "./TicketDescription.module.css"
-function TicketDescription (props) {
-    return (
-      <div>
-        <Card>
-          <div className={classes.header}>
-            <h2>Details for ticket</h2>
-            <h3>{props.title}</h3>
+import Card from "../../ui/Card";
+import classes from "./TicketDescription.module.css";
+function TicketDescription(props) {
+  return (
+    <div>
+      <Card>
+        <div className={classes.header}>
+          <h2>Details for ticket</h2>
+          <h3>{props.title}</h3>
+          <div className={classes.ticketDetails}>
             <table>
               <thead>
                 <tr>
-                  <td>Ticket Title</td>
                   <td>Project ID</td>
-                  <td>Developer Assigned</td>
+                  <td>Developer</td>
                   <td>Ticket Priority</td>
                   <td>Ticket Status</td>
                   <td>Ticket Type</td>
@@ -22,9 +22,7 @@ function TicketDescription (props) {
               </thead>
               <tbody>
                 <tr>
-                  <td>{props.title}</td>
                   <td>{props.projectId}</td>
-
                   <td>{props.personel}</td>
                   <td>{props.importance}</td>
                   <td>{props.status}</td>
@@ -34,13 +32,24 @@ function TicketDescription (props) {
                 </tr>
               </tbody>
             </table>
-            <Card>
-              <div>Description</div>
-              <div>{props.description}</div>
-            </Card>
           </div>
-        </Card>
-      </div>
-    );
+          <div className={classes.ticketDetails}>
+            <table>
+              <thead>
+                <tr>
+                  <td>Description</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{props.description}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </Card>
+    </div>
+  );
 }
 export default TicketDescription;

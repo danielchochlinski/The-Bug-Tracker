@@ -1,3 +1,38 @@
 .header {
   text-align: center;
 }
+
+.ticketDetails {
+  display: grid;
+  text-align: center;
+  align-items: center;
+  font-size: 0.9rem;
+  
+}
+
+.heading {
+  padding: 5px;
+}
+.ticketDetails table {
+  border-collapse: collapse;
+  
+}
+
+.ticketDetails thead {
+  padding: 0.7rem 2rem;
+  letter-spacing: 0.1rem;
+  font-weight: 440;
+  text-transform: uppercase;
+  background-color: rgb(173, 84, 84);
+}
+.ticketDetails tbody tr {
+  cursor: pointer;
+}
+.ticketDetails tbody td {
+  padding: 0.9rem;
+  border-bottom: 1px solid rgb(12, 12, 12, 0.3);
+}
+
+/* .projectList tbody tr:nth-child(odd) {
+
+} */

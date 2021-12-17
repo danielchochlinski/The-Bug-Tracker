@@ -35,6 +35,7 @@ export async function getStaticProps() {
         importance: tickets.importance || null,
         type: tickets.type || null,
         date: tickets.date || null,
+        targetDate: tickets.targetDate || null,
         id: tickets._id.toString() || null,
       })),
     },

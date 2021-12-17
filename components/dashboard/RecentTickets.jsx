@@ -14,6 +14,8 @@ function RecentTickets() {
     getTickets();
   }, []);
 
+  tickets.filter
+
   return (
     <div className={classes.recentTickets}>
       <div className={classes.heading}>Recent Tickets</div>

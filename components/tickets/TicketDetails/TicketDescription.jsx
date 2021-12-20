@@ -7,7 +7,7 @@ function TicketDescription(props) {
         <div className={classes.header}>
           <h2>Details for ticket</h2>
           <h3>{props.title}</h3>
-          <div className={classes.ticketDetails}>
+          <div className={classes.ticketDetials}>
             <table>
               <thead>
                 <tr>
@@ -33,8 +33,8 @@ function TicketDescription(props) {
               </tbody>
             </table>
           </div>
-          <div className={classes.ticketDetails}>
-            <table>
+          <div className={classes.ticketDetials}>
+            <table className={classes.description}>
               <thead>
                 <tr>
                   <td>Description</td>

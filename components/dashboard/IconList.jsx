@@ -3,7 +3,7 @@ import Box from "../ui/Box";
 import IconCard from "../ui/IconCard"
 
 import { faTicketAlt } from "@fortawesome/free-solid-svg-icons";
-import { faProjectAlt } from "@fortawesome/free-solid-svg-icons";
+import { faProjectDiagram} from "@fortawesome/free-solid-svg-icons";
 
 function IconList(props) {
   let ticketsLength = props.tickets.length;
@@ -14,8 +14,16 @@ function IconList(props) {
   return (
     <Box>
       <div className={classes.iconList}>
-        <IconCard totalLength={ticketsLength} name={ticketName} icon={faTicketAlt} />
-        <IconCard totalLength={projectsLength} name={projectName} icon={faProjectAlt} />
+        <IconCard
+          totalLength={ticketsLength}
+          name={ticketName}
+          icon={faTicketAlt}
+        />
+        <IconCard
+          totalLength={projectsLength}
+          name={projectName}
+          icon={faProjectDiagram}
+        />
         <IconCard />
         <IconCard />
       </div>

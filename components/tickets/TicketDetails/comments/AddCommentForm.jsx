@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
-import useInput from "../../hooks/useInput";
+import useInput from "../../../../hooks/useInput"
 
-import Modal from "../ui/Modal";
+import Modal from "../../../ui/Modal";
 import classes from "./AddCommentForm.module.css";
 
 const isNotEmpty = (value) => value.trim() !== "";
@@ -61,7 +61,7 @@ function AddCommentForm(props) {
     }
 
     const commentData = {
-      title: "",
+      id: props.commentId,
       commenter: enteredCommenter,
       message: enteredMessage,
       date: enteredDate,

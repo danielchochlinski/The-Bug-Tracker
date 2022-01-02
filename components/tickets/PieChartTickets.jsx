@@ -6,7 +6,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 import Card from "../ui/Card";
 import classes from "./PieChartTickets.module.css"
 
-function PieChartTickets() {
+function PieChartTickets(props) {
   const [low, setLow] = useState([]);
   const [medium, setMedium] = useState([]);
   const [high, setHigh] = useState([]);
@@ -15,10 +15,7 @@ function PieChartTickets() {
   let array = {};
 
   useEffect(() => {
-    //last 3projects by date
-    async function getTickets() {
-      const response = await fetch("/api/fetchTickets");
-      let tickets = await response.json();
+      const tickets = props.tickets
 
       tickets.push({ importance: "Low" });
       tickets.push({ importance: "Medium" });
@@ -38,8 +35,7 @@ function PieChartTickets() {
       setMedium(medium);
       setHigh(high);
       setUrgent(urgent);
-    }
-    getTickets();
+   
   }, []);
 
   const data = {

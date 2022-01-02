@@ -1,0 +1,60 @@
+.personnelCard {
+  width: 290px;
+  height: 390px;
+  align-items: center;
+  flex-direction: column;
+  margin: 5px;
+  padding: 0;
+  border-radius: 1px solid black;
+}
+
+.backgroundImg {
+  position: relative;
+  width: 290px;
+  object-fit: cover;
+  clip-path: polygon(0 0, 100% 0%, 100% 70%, 45% 100%, 0 70%);
+}
+.personnelImgDiv {
+  position: relative;
+  top: -90px;
+  left: 95px;
+}
+
+.personnelImg {
+  position: relative;
+  z-index: 9;
+  top: -10px;
+  border-radius: 50px;
+  border: 10px solid black;
+  object-fit: cover;
+}
+
+.personnelCard h1 {
+  top: -95px;
+  text-align: center;
+  position: relative;
+  font-size: 1rem;
+}
+
+.personnelCard p {
+  text-align: center;
+  position: relative;
+  padding: 5px;
+  padding-bottom: 0;
+  top: -110px;
+  font-size: 0.9rem;
+}
+
+.personnelCard h2 {
+    position: relative;
+    top: -110px;
+    font-size: 0.9rem;
+}
+
+.personnelCard ul li {
+    position: relative;
+    top: -110px;
+    font-size: 0.9rem;
+}
+
+

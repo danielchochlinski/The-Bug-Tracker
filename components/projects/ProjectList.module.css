@@ -3,6 +3,8 @@
   text-align: center;
   align-items: center;
   font-size: 0.9rem;
+  max-height: 500px;
+  overflow-y: auto;
 }
 .heading {
   padding: 5px;
@@ -24,6 +26,9 @@
 .projectList tbody td {
   padding: 0.9rem;
   border-bottom: 1px solid rgb(12, 12, 12, 0.3);
+}
+.projectList h1 {
+  font-size: 0.9rem;
 }
 
 /* .projectList tbody tr:nth-child(odd) {

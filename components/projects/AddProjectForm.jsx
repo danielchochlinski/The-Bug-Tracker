@@ -158,7 +158,7 @@ function AddProjectForm(props) {
               <option value="">Choose Status</option>
               <option value="Not Started">Not Started</option>
               <option value="In Progress">In Progress</option>
-              <option value="Done">Done</option>
+              <option value="Complete">Complete</option>
               <option value="Late">Late</option>
             </select>
             {statusInputHasError && (

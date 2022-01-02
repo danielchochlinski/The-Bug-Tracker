@@ -6,14 +6,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #77002e;
+  background-color: rgb(196, 196, 228);
   padding: 0 10%;
 }
 
 .toggle {
   vertical-align: middle;
   position: relative;
-  left: 300px;
+  left: 400px;
   width: 60px;
   height: 60px;
   background: var(--main-color);

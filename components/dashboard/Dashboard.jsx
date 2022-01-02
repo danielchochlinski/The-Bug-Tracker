@@ -2,7 +2,7 @@ import { Fragment, useEffect, useState } from "react";
 import Card from "../ui/Card";
 import IconList from "./IconList";
 import RecentAddList from "./RecentAddList";
-import Calendar from "../workNprogres/MyCalendar";
+import Calendar from "../ui/MyCalendar";
 
 function Dashboard() {
   const [events, setEvents] = useState([]);

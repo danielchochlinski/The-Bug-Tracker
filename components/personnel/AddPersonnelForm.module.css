@@ -1,0 +1,66 @@
+.form {
+  overflow-y: auto;
+}
+
+.formControl input,
+.formControl select {
+  display: block;
+  text-align: center;
+  width: 100%;
+  padding: 0.2rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.formControl label {
+  text-align: center;
+}
+
+.formControl input:focus {
+  outline: none;
+  border-color: #6f4dc0;
+  background-color: #e0d4fd;
+}
+
+.formControlInvalid input,
+.formControlInvalid select {
+  display: block;
+  text-align: center;
+  width: 100%;
+  padding: 0.2rem;
+  border-radius: 4px;
+  border: 1px solid rgb(75, 74, 74);
+}
+
+.formControlInvalid label {
+  text-align: center;
+}
+
+.formControlInvalid input:focus {
+  outline: none;
+  border-color: #c04d4d;
+  background-color: #fdd4f4;
+}
+
+.textError {
+  color: red;
+  text-align: center;
+  margin-bottom: 0;
+  margin-top: 3px;
+  padding: 0;
+}
+
+.checkmark {
+  position: absolute;
+  left: 130px;
+  height: 15px;
+  width: 15px;
+  background-color: #eee;
+}
+.checkmark:hover {
+  background-color: #ccc;
+}
+
+.checkmark:checked {
+  background-color: #2196F3;
+}

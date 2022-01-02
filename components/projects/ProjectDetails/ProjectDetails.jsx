@@ -46,32 +46,34 @@ function ProjectDetails(props) {
           <div className={classes.grid}>
             <div className={classes.ticketList}>
               <h1>Ticket list for this project</h1>
-              <table>
-                <thead>
-                  <tr>
-                    <td>Title</td>
-                    <td>Status</td>
-                    <td>Importance</td>
-                    <td>Type</td>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredTickets.map((ticket) => (
-                    <TicketForProjectDetail
-                      id={ticket.id}
-                      title={ticket.title}
-                      projectId={ticket.projectId}
-                      personel={ticket.personel}
-                      description={ticket.description}
-                      status={ticket.status}
-                      importance={ticket.importance}
-                      type={ticket.type}
-                      date={ticket.date}
-                      key={ticket.id}
-                    />
-                  ))}
-                </tbody>
-              </table>
+              <div className={classes.projectDetials}>
+                <table>
+                  <thead>
+                    <tr>
+                      <td>Title</td>
+                      <td>Status</td>
+                      <td>Importance</td>
+                      <td>Type</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredTickets.map((ticket) => (
+                      <TicketForProjectDetail
+                        id={ticket.id}
+                        title={ticket.title}
+                        projectId={ticket.projectId}
+                        personel={ticket.personel}
+                        description={ticket.description}
+                        status={ticket.status}
+                        importance={ticket.importance}
+                        type={ticket.type}
+                        date={ticket.date}
+                        key={ticket.id}
+                      />
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
             <div className={classes.assignedPersonel}>
               <h1>Assigned Personel</h1>

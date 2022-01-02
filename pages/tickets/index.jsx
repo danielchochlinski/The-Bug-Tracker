@@ -1,13 +1,18 @@
-import {Fragment} from "react"
+import { Fragment } from "react";
 import TicketList from "../../components/tickets/TicketList";
 import { MongoClient } from "mongodb";
-import ChartsList from "../../components/tickets/ChartsList"
+import ChartsList from "../../components/ui/ChartsList";
+import PieChartTickets from "../../components/tickets/PieChartTickets";
+import BarChartTickets from "../../components/tickets/BarChartTickets";
 
 function AllTicketsPage(props) {
   return (
     <Fragment>
       <TicketList tickets={props.tickets} />
-      <ChartsList />
+      <ChartsList>
+        <PieChartTickets tickets={props.tickets} />
+        <BarChartTickets tickets={props.tickets} />
+      </ChartsList>
     </Fragment>
   );
 }
@@ -39,7 +44,7 @@ export async function getStaticProps() {
         id: tickets._id.toString() || null,
       })),
     },
-    revalidate: false,
+    revalidate: 30,
   };
 }
 

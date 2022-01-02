@@ -2,11 +2,18 @@ import { Fragment } from "react";
 import { MongoClient } from "mongodb";
 
 import ProjectList from "../../components/projects/ProjectList";
+import ChartsList from "../../components/ui/ChartsList"
+import PieChartProjects from "../../components/projects/PieChartProjects"
+import BarChartProjects from "../../components/projects/BarChartProjects"
 
 function AllProjectsPage(props) {
   return (
     <Fragment>
       <ProjectList projects={props.projects} />
+      <ChartsList>
+        <PieChartProjects projects={props.projects} />
+        <BarChartProjects projects={props.projects} />
+      </ChartsList>
     </Fragment>
   );
 }

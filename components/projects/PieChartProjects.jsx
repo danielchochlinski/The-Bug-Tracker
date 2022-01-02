@@ -4,9 +4,9 @@ import { Pie } from "react-chartjs-2";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 import Card from "../ui/Card";
-import classes from "./PieChart.module.css";
+import classes from "./PieChartProjects.module.css";
 
-function PieChartTickets() {
+function PieChartProjects(props) {
   const [low, setLow] = useState([]);
   const [medium, setMedium] = useState([]);
   const [high, setHigh] = useState([]);
@@ -16,30 +16,27 @@ function PieChartTickets() {
 
   useEffect(() => {
     //last 3projects by date
-    async function getTickets() {
-      const response = await fetch("/api/fetchTickets");
-      let tickets = await response.json();
+    let projects = props.projects;
 
-      tickets.push({ importance: "Low" });
-      tickets.push({ importance: "Medium" });
-      tickets.push({ importance: "High" });
-      tickets.push({ importance: "Urgent" });
+    projects.push({ importance: "Low" });
+    projects.push({ importance: "Medium" });
+    projects.push({ importance: "High" });
+    projects.push({ importance: "Urgent" });
 
-      for (const importance of tickets) {
-        array[importance.importance] = 1 + (array[importance.importance] || 0);
-      }
-
-      let low = array.Low.toString() - "1";
-      let medium = array.Medium.toString() - "1";
-      let high = array.High.toString() - "1";
-      let urgent = array.Urgent.toString() - "1";
-      
-      setLow(low);
-      setMedium(medium);
-      setHigh(high);
-      setUrgent(urgent);
+    for (const importance of projects) {
+      array[importance.importance] = 1 + (array[importance.importance] || 0);
     }
-    getTickets();
+    console.log(array);
+
+    let low = array.Low.toString() - "1";
+    let medium = array.Medium.toString() - "1";
+    let high = array.High.toString() - "1";
+    let urgent = array.Urgent.toString() - "1";
+
+    setLow(low);
+    setMedium(medium);
+    setHigh(high);
+    setUrgent(urgent);
   }, []);
 
   const data = {
@@ -52,7 +49,6 @@ function PieChartTickets() {
           "rgba(75, 192, 192, 0.2)",
           "rgba(54, 162, 235, 0.2)",
           "rgba(255, 206, 86, 0.2)",
-
           "rgba(255, 99, 132, 0.2)",
         ],
         borderColor: [
@@ -71,7 +67,9 @@ function PieChartTickets() {
     <Card>
       <div className={classes.chartBox}>
         <div className={classes.pieChart}>
-          <div>Tickets Urgency Chart</div>
+          <div className={classes.header}>
+            <h1>Projects Urgency Chart</h1>
+          </div>
           <Pie data={data} />
         </div>
       </div>
@@ -79,4 +77,4 @@ function PieChartTickets() {
   );
 }
 
-export default PieChartTickets;
+export default PieChartProjects;

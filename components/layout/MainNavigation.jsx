@@ -72,9 +72,9 @@ function Dashboard() {
           </li>
           <li
             className={
-              router.pathname == "/contacts"
+              router.pathname == "/personnel"
                 ? classes.active
-                : "" || router.pathname == "/contacts/[contactId]"
+                : "" || router.pathname == "/personnel/[personnelId]"
                 ? classes.active
                 : ""
             }
@@ -82,7 +82,7 @@ function Dashboard() {
             <div className={classes.icon}>
               <FontAwesomeIcon className={classes.icon} icon={faAddressBook} />
             </div>
-            <Link href="/contacts">Personel</Link>
+            <Link href="/personnel">Personel</Link>
           </li>
           <li
             className={

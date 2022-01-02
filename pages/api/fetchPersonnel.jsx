@@ -6,11 +6,11 @@ async function handler(req, res) {
   );
   const db = client.db();
 
-  const ticketsCollection = db.collection("tickets");
+  const personnelCollection = db.collection("personnel");
 
-  const tickets = ticketsCollection.find().limit(1).sort({$natural:-1})
-  res.json(tickets);
-  console.log(tickets);
+  const personnel = await personnelCollection.find().toArray();
+  res.json(personnel);
+  console.log(personnel);
 
   client.close();
 }

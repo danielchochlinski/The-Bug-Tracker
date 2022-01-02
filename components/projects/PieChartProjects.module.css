@@ -4,3 +4,7 @@
 .chartBox {
     margin:10px;
 }
+.header h1{
+    font-size: 0.9rem;
+    text-align: center;
+}

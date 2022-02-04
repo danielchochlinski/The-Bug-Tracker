@@ -4,8 +4,8 @@ import PersonnelCard from "./PersonnelCard";
 import { Fragment, useState, useEffect } from "react";
 
 function PersonnelList(props) {
-  const [showAddPersonnel, setShowAddPersonnel] = useState(false);
-  const [personnel, setPersonnel] = useState([]);
+  // const [showAddPersonnel, setShowAddPersonnel] = useState(false);
+ 
 
   // const addPersonnelHaandler = () => {
   //   setShowAddPersonnel(true);
@@ -14,28 +14,20 @@ function PersonnelList(props) {
   //   setShowAddPersonnel(false);
   // };
 
-  async function addPersonnelHandler(enteredPersonnelData) {
-    const response = await fetch("/api/postPersonnel", {
-      method: "POST",
-      body: JSON.stringify(enteredPersonnelData),
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    });
-    const data = await response.json();
-    setShowAddPersonnel(false);
-  }
+  // async function addPersonnelHandler(enteredPersonnelData) {
+  //   const response = await fetch("/api/postPersonnel", {
+  //     method: "POST",
+  //     body: JSON.stringify(enteredPersonnelData),
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Accept: "application/json",
+  //     },
+  //   });
+  //   const data = await response.json();
+  //   setShowAddPersonnel(false);
+  // }
 
-  useEffect(() => {
-    async function fetchPersonnel() {
-      const response = await fetch("/api/fetchPersonnel");
-      const data = await response.json();
-      setPersonnel(data);
-    }
-    fetchPersonnel();
-  }, []);
-  console.log(personnel);
+ 
 
   return (
     <Fragment>
@@ -44,7 +36,7 @@ function PersonnelList(props) {
           <h1>Personnel</h1>
         </header>
         <div className={classes.box}>
-          {personnel.map((person, index) => (
+          {props.personnel.map((person, index) => (
             <div key={index}>
               <PersonnelCard
                 id={person._id}

@@ -49,7 +49,7 @@ function PersonnelList() {
         {personnel.map((person) => (
          
             <PersonnelCard
-              key={person.id}
+              key={person._id}
               image={person.image}
               name={person.name}
               title={person.title}

@@ -102,7 +102,7 @@ function AddPersonnelForm(props) {
       <form onSubmit={addPersonnelHandler}>
         <div className={classes.form}>
           <div className={nameClasses}>
-            <label htmlFor="name">Developer's Name</label>
+            <label htmlFor="name">Developers Name</label>
             <input
               type="text"
               id="name"

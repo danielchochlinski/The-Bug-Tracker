@@ -44,16 +44,18 @@ function PersonnelList(props) {
           <h1>Personnel</h1>
         </header>
         <div className={classes.box}>
-          {personnel.map((person) => (
-            <PersonnelCard
-              id={person._id}
-              key={person._id}
-              image={person.image}
-              name={person.name}
-              title={person.title}
-              description={person.description}
-              languages={person.languages}
-            />
+          {personnel.map((person, index) => (
+            <div key={index}>
+              <PersonnelCard
+                id={person._id}
+                key={person._id}
+                image={person.image}
+                name={person.name}
+                title={person.title}
+                description={person.description}
+                languages={person.languages}
+              />
+            </div>
           ))}
         </div>
         <div>

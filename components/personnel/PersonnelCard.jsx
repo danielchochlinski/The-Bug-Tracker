@@ -5,8 +5,7 @@ import Card from "../ui/Card";
 function PersonnelCard(props) {
   return (
     <Card key={props.id}>
-      <div className={classes.personnelCard}
-      >
+      <div className={classes.personnelCard}>
         <div className={classes.backgroundImg}>
           <Image
             src="/background.jpg"
@@ -31,12 +30,12 @@ function PersonnelCard(props) {
         </div>
         <div>
           <h2>Tech</h2>
-          <ul>
-            {/* <Image src="/react.svg" width="20" height="20"  /> */}
-            {props.languages.map((language, index) => (
-              <li key={index} >{language}</li>
-            ))}
-          </ul>
+          {/* <Image src="/react.svg" width="20" height="20"  /> */}
+          {props.languages.map((language, index) => (
+            <ul key={index}>
+              <li>{language}</li>
+            </ul>
+          ))}
         </div>
       </div>
     </Card>

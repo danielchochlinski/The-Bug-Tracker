@@ -4,8 +4,9 @@ import Card from "../ui/Card";
 
 function PersonnelCard(props) {
   return (
-    <Card key={props.key}>
-      <div className={classes.personnelCard}>
+    <Card key={props.id}>
+      <div className={classes.personnelCard}
+      >
         <div className={classes.backgroundImg}>
           <Image
             src="/background.jpg"

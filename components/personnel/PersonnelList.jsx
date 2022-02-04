@@ -2,8 +2,6 @@ import Box from "../ui/Box";
 import classes from "./PersonnelList.module.css";
 import PersonnelCard from "./PersonnelCard";
 import { Fragment, useState, useEffect } from "react";
-import AddPersonnelForm from "./AddPersonnelForm";
-import Image from "next/image";
 
 function PersonnelList(props) {
   const [showAddPersonnel, setShowAddPersonnel] = useState(false);

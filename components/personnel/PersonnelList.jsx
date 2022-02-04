@@ -46,7 +46,8 @@ function PersonnelList(props) {
         <div className={classes.box}>
           {personnel.map((person) => (
             <PersonnelCard
-              key={person._id}
+            id={person.id}
+              key={person.id}
               image={person.image}
               name={person.name}
               title={person.title}

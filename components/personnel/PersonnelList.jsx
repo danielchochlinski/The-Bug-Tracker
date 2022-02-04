@@ -5,7 +5,7 @@ import { Fragment, useState, useEffect } from "react";
 import AddPersonnelForm from "./AddPersonnelForm";
 import Image from "next/image";
 
-function PersonnelList() {
+function PersonnelList(props) {
   const [showAddPersonnel, setShowAddPersonnel] = useState(false);
   const [personnel, setPersonnel] = useState([]);
 
@@ -45,9 +45,8 @@ function PersonnelList() {
         <header className={classes.header}>
           <h1>Personnel</h1>
         </header>
-         <div className={classes.box}>
-        {personnel.map((person) => (
-         
+        <div className={classes.box}>
+          {personnel.map((person) => (
             <PersonnelCard
               key={person._id}
               image={person.image}
@@ -56,18 +55,18 @@ function PersonnelList() {
               description={person.description}
               languages={person.languages}
             />
-        ))}
+          ))}
         </div>
         <div>
           {/* <button onClick={addPersonnelHaandler}>Add Personel</button> */}
         </div>
       </Box>
-      {showAddPersonnel && (
+      {/* {showAddPersonnel && (
         <AddPersonnelForm
           onClose={hideAddPersonnelHandler}
           onAddPersonnel={addPersonnelHandler}
         />
-      )}
+      )} */}
     </Fragment>
   );
 }

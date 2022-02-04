@@ -7,12 +7,12 @@ function PersonnelList(props) {
   const [showAddPersonnel, setShowAddPersonnel] = useState(false);
   const [personnel, setPersonnel] = useState([]);
 
-  const addPersonnelHaandler = () => {
-    setShowAddPersonnel(true);
-  };
-  const hideAddPersonnelHandler = () => {
-    setShowAddPersonnel(false);
-  };
+  // const addPersonnelHaandler = () => {
+  //   setShowAddPersonnel(true);
+  // };
+  // const hideAddPersonnelHandler = () => {
+  //   setShowAddPersonnel(false);
+  // };
 
   async function addPersonnelHandler(enteredPersonnelData) {
     const response = await fetch("/api/postPersonnel", {

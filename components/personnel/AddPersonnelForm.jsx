@@ -1,6 +1,6 @@
 import useInput from "../../hooks/useInput";
 import Modal from "../ui/Modal";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import classes from "./AddPersonnelForm.module.css";
 
 const isNotEmpty = (value) => value.trim() !== "";

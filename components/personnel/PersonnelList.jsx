@@ -39,8 +39,8 @@ function PersonnelList(props) {
           {props.personnel.map((person, index) => (
             <div key={index}>
               <PersonnelCard
-                id={person._id}
-                key={person._id}
+                id={person.id}
+                key={person.id}
                 image={person.image}
                 name={person.name}
                 title={person.title}

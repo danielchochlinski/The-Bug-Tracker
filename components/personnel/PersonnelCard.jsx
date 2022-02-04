@@ -33,8 +33,8 @@ function PersonnelCard(props) {
           <h2>Tech</h2>
           <ul>
             {/* <Image src="/react.svg" width="20" height="20"  /> */}
-            {props.languages.map((language) => (
-              <li>{language}</li>
+            {props.languages.map((language, index) => (
+              <li key={index} >{language}</li>
             ))}
           </ul>
         </div>

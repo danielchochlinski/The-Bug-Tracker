@@ -1,4 +1,5 @@
-import { useState, Fragment, useEffect } from "react";
+import { useState, Fragment, useEffec, useContext } from "react";
+import NotificationContext from "../../store/notification-context";
 
 import classes from "./TicketList.module.css";
 import Box from "../ui/Box";
@@ -8,16 +9,23 @@ import TicketItem from "./TicketItem";
 import AddTicketForm from "./AddTicketForm";
 
 function TicketList(props) {
-  const [showAddTicket, setshowAddTicket] = useState(false);
-
+  console.log()
+  const [showAddTicket, setShowAddTicket] = useState(false);
+  const notificationCtx = useContext(NotificationContext);
   const showAddTicketHandler = () => {
-    setshowAddTicket(true);
+    setShowAddTicket(true);
   };
   const hideAddTicketHandler = () => {
-    setshowAddTicket(false);
+    setShowAddTicket(false);
   };
 
   async function addTicketHandler(enteredTicketData) {
+    notificationCtx.showNotification({
+      title: "Adding Ticket",
+      message: "Ticket Is Being Added",
+      status: "pending",
+    });
+
     const response = await fetch("/api/postTicket", {
       method: "POST",
       body: JSON.stringify(enteredTicketData),
@@ -25,9 +33,17 @@ function TicketList(props) {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-    });
-    const data = await response.json();
-    setshowAddTicket(false);
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        notificationCtx.showNotification({
+          title: "Ticket Added",
+          message: "Ticket Has Been Added",
+          status: "success",
+        });
+      });
+
+    setShowAddTicket(false);
   }
 
   return (
@@ -52,7 +68,7 @@ function TicketList(props) {
               <tbody>
                 {props.tickets.map((ticket) => (
                   <TicketItem
-                    id={ticket.id}
+                    id={ticket._id}
                     title={ticket.title}
                     projectId={ticket.projectId}
                     personel={ticket.personel}
@@ -62,7 +78,7 @@ function TicketList(props) {
                     type={ticket.type}
                     date={ticket.date}
                     targetDate={ticket.targetDate}
-                    key={ticket.id}
+                    key={ticket._id}
                   />
                 ))}
               </tbody>

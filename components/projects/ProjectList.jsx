@@ -1,14 +1,15 @@
-import { useState, Fragment } from "react";
-
+import { useState, Fragment, useContext, useEffect } from "react";
+import NotificationContext from "../../store/notification-context";
 import ProjectItem from "./ProjectItem";
 import classes from "./ProjectList.module.css";
-
+import Button from "../ui/Button"
 import Card from "../ui/Card";
 import Box from "../ui/Box";
 import AddProjectForm from "./AddProjectForm";
 
 function ProjectList(props) {
   const [showAddProject, setShowAddProject] = useState(false);
+  const notificationCtx = useContext(NotificationContext);
 
   const showAddProjectHandler = () => {
     setShowAddProject(true);
@@ -18,6 +19,11 @@ function ProjectList(props) {
   };
 
   async function addProjectHandler(enteredProjectData) {
+    notificationCtx.showNotification({
+      title: "Adding Project",
+      message: "Project Is Being Added",
+      status: "pending",
+    });
     const response = await fetch("/api/postProject", {
       method: "POST",
       body: JSON.stringify(enteredProjectData),
@@ -25,11 +31,17 @@ function ProjectList(props) {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-    });
-    const data = await response.json();
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        notificationCtx.showNotification({
+          title: "Project Added",
+          message: "Project Has Been Added",
+          status: "success",
+        });
+      });
     setShowAddProject(false);
   }
-
   return (
     <Fragment>
       <Box>

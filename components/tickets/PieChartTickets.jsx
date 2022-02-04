@@ -4,7 +4,7 @@ import { Pie } from "react-chartjs-2";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 import Card from "../ui/Card";
-import classes from "./PieChartTickets.module.css"
+import classes from "./PieChartTickets.module.css";
 
 function PieChartTickets(props) {
   const [low, setLow] = useState([]);
@@ -15,27 +15,30 @@ function PieChartTickets(props) {
   let array = {};
 
   useEffect(() => {
-      const tickets = props.tickets
+    const tickets = props.tickets;
 
-      tickets.push({ importance: "Low" });
-      tickets.push({ importance: "Medium" });
-      tickets.push({ importance: "High" });
-      tickets.push({ importance: "Urgent" });
+    tickets.push({ importance: "Low" });
+    tickets.push({ importance: "Medium" });
+    tickets.push({ importance: "High" });
+    tickets.push({ importance: "Urgent" });
 
-      for (const importance of tickets) {
-        array[importance.importance] = 1 + (array[importance.importance] || 0);
-      }
+    for (const importance of tickets) {
+      array[importance.importance] = 1 + (array[importance.importance] || 0);
+    }
+    tickets.pop({ importance: "Low" });
+    tickets.pop({ importance: "Medium" });
+    tickets.pop({ importance: "High" });
+    tickets.pop({ importance: "Urgent" });
 
-      let low = array.Low.toString() - "1";
-      let medium = array.Medium.toString() - "1";
-      let high = array.High.toString() - "1";
-      let urgent = array.Urgent.toString() - "1";
-      
-      setLow(low);
-      setMedium(medium);
-      setHigh(high);
-      setUrgent(urgent);
-   
+    let low = array.Low.toString() - "1";
+    let medium = array.Medium.toString() - "1";
+    let high = array.High.toString() - "1";
+    let urgent = array.Urgent.toString() - "1";
+
+    setLow(low);
+    setMedium(medium);
+    setHigh(high);
+    setUrgent(urgent);
   }, []);
 
   const data = {

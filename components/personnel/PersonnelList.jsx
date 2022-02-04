@@ -59,7 +59,7 @@ function PersonnelList() {
         ))}
         </div>
         <div>
-          <button onClick={addPersonnelHaandler}>Add Personel</button>
+          {/* <button onClick={addPersonnelHaandler}>Add Personel</button> */}
         </div>
       </Box>
       {showAddPersonnel && (

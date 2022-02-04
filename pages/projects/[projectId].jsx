@@ -1,4 +1,4 @@
-import { MongoClient } from "mongodb";
+import { connectToDatabase } from "../../lib/db";
 import ProjectDetails from "../../components/projects/ProjectDetails/ProjectDetails";
 
 function ProjectDetailPage(props) {
@@ -15,14 +15,13 @@ function ProjectDetailPage(props) {
       importance={props.projectData.importance}
       date={props.projectData.date}
       targetDate={props.projectData.targetDate}
+      id={props.projectData._id}
     />
   );
 }
 
 export async function getStaticPaths() {
-  const client = await MongoClient.connect(
-    "mongodb+srv://daniel:daniel12345@cluster0.f3to2.mongodb.net/BugTracker?retryWrites=true&w=majority"
-  );
+  const client = await connectToDatabase()
   const db = client.db();
 
   const projectsCollection = db.collection("projects");
@@ -40,9 +39,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   const projectId = context.params.projectId;
 
-  const client = await MongoClient.connect(
-    "mongodb+srv://daniel:daniel12345@cluster0.f3to2.mongodb.net/BugTracker?retryWrites=true&w=majority"
-  );
+  const client = await connectToDatabase()
   const db = client.db();
 
   const projectsCollection = db.collection("projects");

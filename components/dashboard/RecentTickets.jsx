@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import TicketItemDashboard from "./TicketItemDashboard";
-import classes from "./RecentTickets.module.css";
+import classes from "./Recent.module.css";
 
 function RecentTickets() {
   const [tickets, setTickets] = useState([]);
@@ -17,7 +17,7 @@ function RecentTickets() {
   tickets.filter
 
   return (
-    <div className={classes.recentTickets}>
+    <div className={classes.recent}>
       <div className={classes.heading}>Recent Tickets</div>
       <table>
         <thead>

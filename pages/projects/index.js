@@ -1,10 +1,12 @@
 import { Fragment } from "react";
-import { MongoClient } from "mongodb";
 
 import ProjectList from "../../components/projects/ProjectList";
 import ChartsList from "../../components/ui/ChartsList"
 import PieChartProjects from "../../components/projects/PieChartProjects"
 import BarChartProjects from "../../components/projects/BarChartProjects"
+import { connectToDatabase } from "../../lib/db";
+import {getSession} from "next-auth/client"
+
 
 function AllProjectsPage(props) {
   return (
@@ -18,10 +20,10 @@ function AllProjectsPage(props) {
   );
 }
 
-export async function getStaticProps() {
-  const client = await MongoClient.connect(
-    "mongodb+srv://daniel:daniel12345@cluster0.f3to2.mongodb.net/BugTracker?retryWrites=true&w=majority"
-  );
+
+
+export async function getServerSideProps(context) {
+  const client = await connectToDatabase();
   const db = client.db();
 
   const projectsCollection = db.collection("projects");
@@ -29,9 +31,20 @@ export async function getStaticProps() {
   const projects = await projectsCollection.find().toArray();
 
   client.close();
+  const session = await getSession({ req: context.req });
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/auth",
+        permanent: false,
+      },
+    };
+  }
 
   return {
     props: {
+      session,
       projects: projects.map((project) => ({
         title: project.title,
         description: project.description,
@@ -42,8 +55,8 @@ export async function getStaticProps() {
         id: project._id.toString(),
       })),
     },
-    revalidate: false,
   };
 }
+
 
 export default AllProjectsPage;

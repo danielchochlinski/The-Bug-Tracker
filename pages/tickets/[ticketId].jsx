@@ -1,6 +1,7 @@
-import { MongoClient } from "mongodb";
 import { useRouter } from "next/router";
-import TicketDetails from "../../components/tickets/TicketDetails/TicketDetails"
+import TicketDetails from "../../components/tickets/TicketDetails/TicketDetails";
+import { connectToDatabase } from "../../lib/db";
+import { getSession } from "next-auth/client";
 function TicketDetailPage(props) {
   const router = useRouter();
 
@@ -18,14 +19,13 @@ function TicketDetailPage(props) {
       date={props.ticketData.date}
       targetDate={props.ticketData.targetDate}
       key={props.ticketData._id}
+      id={props.ticketData._id}
     />
   );
 }
 
-export async function getStaticPaths() {
-  const client = await MongoClient.connect(
-    "mongodb+srv://daniel:daniel12345@cluster0.f3to2.mongodb.net/BugTracker?retryWrites=true&w=majority"
-  );
+export async function getStaticPaths(context) {
+  const client = await connectToDatabase();
   const db = client.db();
 
   const ticketsCollection = db.collection("tickets");
@@ -34,6 +34,7 @@ export async function getStaticPaths() {
 
   client.close();
 
+
   return {
     fallback: false,
     paths: tickets.map((ticket) => ({
@@ -41,19 +42,19 @@ export async function getStaticPaths() {
     })),
   };
 }
+
 export async function getStaticProps(context) {
   const ticketId = context.params.ticketId;
 
-  const client = await MongoClient.connect(
-    "mongodb+srv://daniel:daniel12345@cluster0.f3to2.mongodb.net/BugTracker?retryWrites=true&w=majority"
-  );
+  const client = await connectToDatabase();
   const db = client.db();
 
   const ticketsCollection = db.collection("tickets");
 
   const selectedTicket = await ticketsCollection.findOne({
-    title: (ticketId),
+    title: ticketId,
   });
+
 
   return {
     props: {

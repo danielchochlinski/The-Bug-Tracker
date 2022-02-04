@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ProjectItemDashboard from "./ProjectItemDashboard";
-import classes from "./RecentProjects.module.css";
+import classes from "./Recent.module.css";
 
 function RecentProjects() {
   const [projects, setProjects] = useState([]);
@@ -14,7 +14,7 @@ function RecentProjects() {
     getProjects();
   }, []);
   return (
-    <div className={classes.recentProjects}>
+    <div className={classes.recent}>
       <div className={classes.heading}>Recent Projects</div>
       <table>
         <thead>

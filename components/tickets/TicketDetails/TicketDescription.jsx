@@ -1,6 +1,8 @@
 import Card from "../../ui/Card";
 import classes from "./TicketDescription.module.css";
 function TicketDescription(props) {
+    console.log(props.key);
+
   return (
     <div>
       <Card>

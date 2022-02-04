@@ -3,8 +3,8 @@
   text-align: center;
   align-items: center;
   font-size: 0.9rem;
-  max-height: 500px;
-  overflow-y: auto;
+  max-height: 400px;
+  overflow: auto;
   
   
 }
@@ -22,7 +22,7 @@
   letter-spacing: 0.1rem;
   font-weight: 450;
   text-transform: uppercase;
-  background-color: rgb(173, 84, 84);
+  background: linear-gradient(225deg, #e91e63, #c5bcc4);
 }
 .ticketsList tbody {
     overflow:hidden;

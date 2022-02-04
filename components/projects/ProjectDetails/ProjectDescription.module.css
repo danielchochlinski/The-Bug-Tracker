@@ -4,8 +4,10 @@
   align-items: center;
   font-size: 0.9rem;
 }
-.heading {
+.header {
   padding: 5px;
+  text-align: center;
+
 }
 .projectDetials table {
   border-collapse: collapse;
@@ -16,7 +18,7 @@
   letter-spacing: 0.1rem;
   font-weight: 450;
   text-transform: uppercase;
-  background-color: rgb(173, 84, 84);
+  background: linear-gradient(225deg, #e91e63, #c5bcc4);
 }
 .projectDetials tbody tr {
   cursor: pointer;

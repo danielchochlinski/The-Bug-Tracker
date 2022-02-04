@@ -2,7 +2,6 @@ import classes from "./PersonnelCard.module.css";
 import Image from "next/image";
 import Card from "../ui/Card";
 
-
 function PersonnelCard(props) {
   return (
     <Card>
@@ -27,17 +26,15 @@ function PersonnelCard(props) {
         <div>
           <h1>{props.name}</h1>
           <p>{props.title}</p>
-          <p>
-            {props.description}
-          </p>
+          <p>{props.description}</p>
         </div>
         <div>
           <h2>Tech</h2>
           <ul>
-            <li>
-              <Image src="/react.svg" width="20" height="20"  />
-            {props.languages}
-            </li>
+            {/* <Image src="/react.svg" width="20" height="20"  /> */}
+            {props.languages.map((language) => (
+              <li>{language}</li>
+            ))}
           </ul>
         </div>
       </div>

@@ -23,7 +23,7 @@ function MyCalendar(props) {
   return (
     <Box>
       <Card>
-        <div style={{ textAlign: "center", padding: "10px" }}>
+        <div style={{ textAlign: "center", padding: "10px", marginTop: "100px", pading: "10px",  fontWeight: "bold"}}>
           Projects && Tickets coming up
         </div>
         <Calendar

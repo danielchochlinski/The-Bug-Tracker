@@ -1,0 +1,168 @@
+.authPage {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+background-color:rgb(0, 0, 0, 0.7);}
+
+.imageContainer {
+  position: relative;
+  width: 50%;
+  height: 100vh;
+}
+
+.imageContainer:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(225deg, #e91e63, #210927);
+  z-index: 1;
+  mix-blend-mode: screen;
+}
+
+.contentContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+  position: relative;
+}
+.imageFit {
+  position: relative;
+  left: 120px;
+  top: 180px;
+}
+.formContainer {
+  width: 50%;
+}
+
+.formContainer h2 {
+  color: #f53677;
+  font-weight: 600;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  border-bottom: 4px solid #f53677;
+  display: inline-block;
+  letter-spacing: 1px;
+}
+
+.form {
+  overflow-y: auto;
+}
+.buttom {
+  position: relative;
+  left: -10px;
+  background: #ff4584;
+  color: #fff;
+  outline: none;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  display: block;
+  text-align: center;
+  width: 100%;
+  border-radius: 30px;
+  height: 40px;
+  font-size:16px;
+  margin: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+.buttom:hover {
+  background:#f53677
+}
+
+.formControl input,
+.formControl select {
+  display: block;
+  margin-bottom: 20px;
+  text-align: center;
+  width: 100%;
+  padding: 10px 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  outline: none;
+  letter-spacing: 1px;
+  background: transparent;
+  border-radius: 30px;
+}
+
+.formControl label {
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 10px;
+  display: inline-block;
+  font-weight: 300;
+
+  letter-spacing: 1px;
+}
+
+.formControl input:focus {
+  outline: none;
+  border-color: #e0d4fd;
+  background-color: #f09ab6;
+  
+}
+
+.formControlInvalid input,
+.formControlInvalid select {
+ display: block;
+  margin-bottom: 20px;
+  text-align: center;
+  width: 100%;
+  padding: 10px 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  outline: none;
+  letter-spacing: 1px;
+  background: transparent;
+  border-radius: 30px;
+}
+
+.formControlInvalid label {
+  text-align: center;
+}
+
+.formControlInvalid input:focus {
+  outline: none;
+  border-color: #c04d4d;
+  background-color: #fdd4f4;
+}
+
+.textError {
+  color: red;
+  text-align: center;
+  margin-bottom: 0;
+  margin-top: 3px;
+  padding: 0;
+}
+
+.user {
+  position: relative;
+  left: -10px;
+  top: 30px;
+  background: #ff4584;
+  color: #fff;
+  outline: none;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  display: block;
+  text-align: center;
+  width: 100%;
+  border-radius: 30px;
+  height: 40px;
+  font-size:16px;
+  margin: 10px;
+  margin-bottom: 50px;
+  padding: 10px;
+}
+.user:hover {
+  background:#f53677
+}
+

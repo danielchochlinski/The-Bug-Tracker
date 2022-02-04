@@ -1,20 +1,18 @@
 import { Fragment } from "react";
-import { MongoClient } from "mongodb";
-
+import { connectToDatabase } from "../../lib/db";
+import {getSession} from "next-auth/client"
 import PersonnelList from "../../components/personnel/PersonnelList";
 
 function AllPersonnel(props) {
   return (
     <Fragment>
-      <PersonnelList personnel={props.personnel}/>
+      <PersonnelList personnel={props.personnel} />
     </Fragment>
   );
 }
 
-export async function getStaticProps() {
-  const client = await MongoClient.connect(
-    "mongodb+srv://daniel:daniel12345@cluster0.f3to2.mongodb.net/BugTracker?retryWrites=true&w=majority"
-  );
+export async function getServerSideProps(context) {
+  const client = await connectToDatabase();
   const db = client.db();
 
   const personnelCollection = db.collection("personnel");
@@ -23,18 +21,28 @@ export async function getStaticProps() {
 
   client.close();
 
+  const session = await getSession({ req: context.req });
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/auth",
+        permanent: false,
+      },
+    };
+  }
+
   return {
     props: {
+      session,
       personnel: personnel.map((personnel) => ({
         name: personnel.name || null,
         title: personnel.title || null,
         description: personnel.description || null,
         image: personnel.image || null,
         languages: personnel.languages || null,
-
       })),
     },
-    revalidate: 30,
   };
 }
 

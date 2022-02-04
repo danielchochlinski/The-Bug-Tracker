@@ -1,14 +1,22 @@
-import { useState, useEffect, Fragment } from "react";
+import { useState, useEffect, Fragment, useContext } from "react";
 import CommentItem from "./CommentItem";
 import AddCommentForm from "./AddCommentForm";
-import Card from "../../../ui/Card"
-import classes from "./CommentList.module.css"
+import Card from "../../../ui/Card";
+import classes from "./CommentList.module.css";
+import NotificationContext from "../../../../store/notification-context";
 
 function CommentsList(props) {
+  const notificationCtx = useContext(NotificationContext);
+
   const [comments, setComments] = useState([]);
   const [showAddComment, setShowAddComment] = useState(false);
 
   async function addCommentHandler(enteredCommentData) {
+    notificationCtx.showNotification({
+      title: "Adding Comment",
+      message: "Comment Is Being Added",
+      status: "pending",
+    });
     const response = await fetch("/api/postComment", {
       method: "POST",
       body: JSON.stringify(enteredCommentData),
@@ -16,7 +24,15 @@ function CommentsList(props) {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-    });
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        notificationCtx.showNotification({
+          title: "Order Sent",
+          message: "Order on the way",
+          status: "success",
+        });
+      });
     setShowAddComment(false);
   }
 
@@ -43,7 +59,7 @@ function CommentsList(props) {
   return (
     <Fragment>
       <Card>
-        <div className={classes.heading}>Comments for this ticket</div>
+        <div className={classes.header}>Comments for this ticket</div>
         <div className={classes.commentList}>
           <table>
             <thead>

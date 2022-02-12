@@ -45,7 +45,7 @@ function MainNavigation() {
               <FontAwesomeIcon icon={faProjectDiagram} />
             </div>
             <Link href="/projects">
-              <a>Projects</a>
+              Projects
             </Link>
           </li>
           <li

@@ -41,7 +41,7 @@ export async function getServerSideProps(context) {
         description: personnel.description || null,
         image: personnel.image || null,
         languages: personnel.languages || null,
-        key: personnel.id || null
+        key: personnel.name || null
       })),
     },
   };

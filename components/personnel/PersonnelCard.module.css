@@ -50,10 +50,15 @@
     top: -110px;
     font-size: 0.9rem;
 }
+.personnelCard {
 
+}
 .personnelCard ul li {
+
+  left: 20px;
     position: relative;
-    top: -110px;
+ 
+    top: -140px;
     font-size: 0.9rem;
 }
 

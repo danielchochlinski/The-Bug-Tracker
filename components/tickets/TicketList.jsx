@@ -78,7 +78,7 @@ function TicketList(props) {
                     type={ticket.type}
                     date={ticket.date}
                     targetDate={ticket.targetDate}
-                    key={ticket._id}
+                    key={ticket.title}
                   />
                 ))}
               </tbody>

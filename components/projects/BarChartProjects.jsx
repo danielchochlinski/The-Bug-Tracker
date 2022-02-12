@@ -14,7 +14,6 @@ function BarChartProjects(props) {
   useEffect(() => {
     //last 3projects by date
 
-    console.log(props.projects);
     let projects = props.projects;
 
     for (const status of projects) {

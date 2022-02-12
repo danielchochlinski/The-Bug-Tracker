@@ -139,7 +139,7 @@ function AddPersonnelForm(props) {
           </div>
 
           {language.map((lang) => (
-            <div>
+            <div key={lang}>
               <label htmlFor={lang}>{lang}</label>
               <input
                 className={classes.checkmark}

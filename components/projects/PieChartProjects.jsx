@@ -26,7 +26,6 @@ function PieChartProjects(props) {
     for (const importance of projects) {
       array[importance.importance] = 1 + (array[importance.importance] || 0);
     }
-    console.log(array);
     projects.pop({ importance: "Low" });
     projects.pop({ importance: "Medium" });
     projects.pop({ importance: "High" });

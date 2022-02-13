@@ -5,7 +5,6 @@ import { Fragment, useState, useEffect } from "react";
 
 function PersonnelList(props) {
   // const [showAddPersonnel, setShowAddPersonnel] = useState(false);
- 
 
   // const addPersonnelHaandler = () => {
   //   setShowAddPersonnel(true);
@@ -27,8 +26,6 @@ function PersonnelList(props) {
   //   setShowAddPersonnel(false);
   // }
 
- 
-
   return (
     <Fragment>
       <Box>
@@ -36,18 +33,16 @@ function PersonnelList(props) {
           <h1>Personnel</h1>
         </header>
         <div className={classes.box}>
-          {props.personnel.map((person, index) => (
-            <div key={index}>
-              <PersonnelCard
-                id={person.id}
-                key={person.id}
-                image={person.image}
-                name={person.name}
-                title={person.title}
-                description={person.description}
-                languages={person.languages}
-              />
-            </div>
+          {props.personnel.map((person) => (
+            <PersonnelCard
+              id={person.id}
+              key={person.name}
+              image={person.image}
+              name={person.name}
+              title={person.title}
+              description={person.description}
+              languages={person.languages}
+            />
           ))}
         </div>
         <div>

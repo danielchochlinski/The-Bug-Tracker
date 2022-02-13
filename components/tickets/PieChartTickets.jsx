@@ -39,7 +39,7 @@ function PieChartTickets(props) {
     setMedium(medium);
     setHigh(high);
     setUrgent(urgent);
-  }, []);
+  }, );
 
   const data = {
     labels: ["Low", "Medium", "High", "Urgent"],

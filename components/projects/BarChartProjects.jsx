@@ -24,7 +24,7 @@ function BarChartProjects(props) {
     setInProgress(array["In Progress"]);
     setComplete(array.Complete);
     setLate(array.Late);
-  }, []);
+  }, );
 
   const labels = ["Not Started", "In Progress", "Completed", "Late"];
   const data = {

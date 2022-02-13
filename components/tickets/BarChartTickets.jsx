@@ -23,7 +23,7 @@ function BarChartTickets(props) {
     setInProgress(array["In Progress"]);
     setComplete(array.Completed);
     setLate(array.Late);
-  }, []);
+  }, );
 
   const labels = ["Not Started", "In Progress", "Completed", "Late"];
   const data = {

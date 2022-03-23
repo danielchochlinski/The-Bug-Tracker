@@ -12,7 +12,7 @@ function PersonnelList(props) {
   // const hideAddPersonnelHandler = () => {
   //   setShowAddPersonnel(false);
   // };
-
+  
   // async function addPersonnelHandler(enteredPersonnelData) {
   //   const response = await fetch("/api/postPersonnel", {
   //     method: "POST",
